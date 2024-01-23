@@ -1,0 +1,7 @@
+db.createUser(
+  {
+    user: "adminCrmTiit",
+    pwd: "Tg30121986",
+    roles: [ { role: "readWrite", db: "crm" } ]
+  }
+)

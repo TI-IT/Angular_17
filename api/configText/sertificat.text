@@ -1,0 +1,25 @@
+Установка SSL сертификата
+Сходите на Simplecloud и добавьте DNS-сервер (домен)
+
+api.<url> (пример api.pubgmoney.ru)
+
+Теперь в командной строке удаленного сервера введите
+
+apt update && apt upgrade
+
+apt install snapd
+
+snap install core
+snap refresh core
+
+apt-get remove certbot
+
+ln -s /snap/bin/certbot /usr/bin/certbot
+
+snap install --classic certbot
+
+certbot --nginx -d www.kvantnolimit.ru -d kvantnolimit.ru -d api.kvantnolimit.ru
+
+(пример certbot --nginx -d www.alumacom-crm.ru -d alumacom-crm.ru -d api.alumacom-crm.ru)
+
+certbot renew --dry-run
