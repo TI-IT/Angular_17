@@ -31,10 +31,16 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    
+
                 </div>
             </div>
         </div>
     }
-    
+
 </div>
+
+<app-success-btn (emitSuccessBtnData)="getSuccessBtnData($event)" [btnData]="{btnName: 'Нажми', btnBoolean: false}"></app-success-btn>
+
+@if (btnBoolean) {
+  <h1>Tigran кликнул</h1>
+}
