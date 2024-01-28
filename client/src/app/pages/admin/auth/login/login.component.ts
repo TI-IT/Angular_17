@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -15,17 +16,19 @@ export class LoginComponent {
     userName: '',
     password: ''
   }
+  toaster= inject(ToastrService)
   constructor(
-    private router: Router
+    private router: Router,
   ){
 
   }
 
   onLogin() {
     if(this.loginObj.userName === "admin" && this.loginObj.password === "123"){
-      console.log("Вы вошли")
+      console.log("Вы вошли", 'Toastr fun!');
+      this.toaster.success("Вы вошли", 'Success');
       //Перенаправляем по URL
-      this.router.navigateByUrl('/products')
+      this.router.navigateByUrl('/products');
 
     } else {
       alert('Не верные учетные данные')

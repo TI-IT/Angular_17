@@ -1,13 +1,10 @@
 const mongoose = require('mongoose')
 
 const unitSchema = new mongoose.Schema({
-    unitName: {
+    name: {
         unique: true,
         type: String,
         required: true,
-    },
-    description: {
-        type: String,
     }
 }, {autoCreate: true})
 

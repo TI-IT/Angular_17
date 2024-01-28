@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const productsSchema = new mongoose.Schema({
+const sheetMaterialsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Поле должно быть заполнено']
@@ -31,11 +31,12 @@ const productsSchema = new mongoose.Schema({
     },
     catalog: {
         type: String,
+        default: 'Листовые материалы',
     },
     category: {
         type: String,
     },
-    Subcategories: {
+    subcategories: {
         type: String,
     },
     createDate: {
@@ -43,6 +44,13 @@ const productsSchema = new mongoose.Schema({
         required: true,
         default: Date.now,
     },
+    thickness: {
+        type: Number,
+    },
+    maxLength: {
+        type: String,
+    },
+
 }, {autoCreate: true});
 
-module.exports = mongoose.model('products', productsSchema)
+module.exports = mongoose.model('sheetMaterials', sheetMaterialsSchema)

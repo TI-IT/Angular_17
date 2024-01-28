@@ -1,6 +1,6 @@
 const Unit = require('./unit_model')
-const errorHandler = require('../../utils/errorHandler')
-const dbConnect = require('../../services/dbConnect');
+const errorHandler = require('../../../utils/errorHandler')
+const dbConnect = require('../../../services/dbConnect');
 
 module.exports.getAll = async function(req, res) {
     await dbConnect();

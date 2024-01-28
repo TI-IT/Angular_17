@@ -66,7 +66,8 @@ const applicationSourceRouter = require('./app_modules/applications/applicationS
 const job_titleRouter = require('./app_modules/jobTitles/job_title_route');
 const usersRouter = require('./app_modules/users/users_route');
 const productsRouter = require('./app_modules/products/products_router');
-const unitsRouter = require('./app_modules/unit/unit_router');
+const sheetMaterialsRouter = require('./app_modules/CatalogsProducts/SheetMaterials/sheetMaterials_router');
+const unitsRouter = require('./app_modules/oneSelectedList/unit/unit_router');
 const currencyRouter = require('./app_modules/currency/currency_router');
 const applicationsRouter = require('./app_modules/applications/applications_route');
 const typesJobsRouter = require('./app_modules/applications/types_jobs_route');
@@ -84,6 +85,7 @@ app.use('/api/roles', roleRouter);
 app.use('/api/users', usersRouter);
 
 app.use('/api/products', productsRouter);
+app.use('/api/sheetMaterials', sheetMaterialsRouter);
 app.use('/api/units', unitsRouter);
 app.use('/api/currency', currencyRouter);
 app.use('/api/applications', applicationsRouter);
