@@ -16,9 +16,10 @@ export class LoginComponent {
     userName: '',
     password: ''
   }
-  toaster= inject(ToastrService)
+
   constructor(
     private router: Router,
+    private toaster: ToastrService,
   ){
 
   }
