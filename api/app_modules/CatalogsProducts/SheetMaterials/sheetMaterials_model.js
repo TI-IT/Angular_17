@@ -48,6 +48,9 @@ const sheetMaterialsSchema = new mongoose.Schema({
         type: Number,
     },
     maxLength: {
+        type: Number,
+    },
+    material: {
         type: String,
     },
 

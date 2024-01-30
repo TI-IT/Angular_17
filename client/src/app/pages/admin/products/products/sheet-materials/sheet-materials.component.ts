@@ -1,9 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {IProduct, ISheetMaterials} from "../../../../../typeScript/interfacesProducts";
-import {HttpClient} from "@angular/common/http";
-import * as http from "http";
-import {HttpService} from "../../../../../services/global/settings/http.service";
-import {ProductsService} from "../../../../../services/productsService/products.service";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -16,7 +12,6 @@ import {ToastrService} from "ngx-toastr";
 export class SheetMaterialsComponent implements OnInit{
   sheetMaterials!: ISheetMaterials[]
   products!: any
-  // toaster= inject(ToastrService)
   constructor(
      private toaster: ToastrService
   ) {

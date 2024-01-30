@@ -12,7 +12,20 @@
                 </div>
             </div>
             <div class="card-body">
-
+              <div class="row">
+                @for (product of productList; track product.id){
+                  <div class="card">
+                    <img [src]="product.productImageUrl" class="card-img-top" alt="..." style="width: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.productName}}</h5>
+                      <p class="card-text">{{product.categoryName}}</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                } @empty {
+                  Empty list of product
+                }
+              </div>
             </div>
         </div>
     </div>
@@ -31,10 +44,82 @@
                     </div>
                 </div>
                 <div class="card-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <label>SKU</label>
+                      <input type="text" [(ngModel)]="productObj.productSku" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label>Name</label>
+                      <input type="text" [(ngModel)]="productObj.productName" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label>Price</label>
+                      <input type="number" [(ngModel)]="productObj.productPrice" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label>ShortName</label>
+                      <input type="text" [(ngModel)]="productObj.productShortName" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label>Description</label>
+                      <input type="text" [(ngModel)]="productObj.productDescription" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <label>Date</label>
+                      <input type="text" [(ngModel)]="productObj.createdDate" class="form-control">
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <label>Category</label>
 
+                        <select [(ngModel)]="productObj.categoryId" class="form-select">
+                          <option>
+                            <button (click)="openAddClientForm()">➕ Создать</button>
+                          </option>
+                          @for (cate of categoryList; track cate.id) {
+
+                            <option  [value]="cate.categoryId">{{cate.categoryName}}</option>
+                          } @empty {
+                            Empty list of cate
+
+                          }
+
+                        </select>
+                      </div>
+                      <div class="col-6">
+                        <label>deliveryTimeSpan</label>
+                        <input type="text" [(ngModel)]="productObj.deliveryTimeSpan" class="form-control">
+                      </div>
+                    </div>
+
+
+                    <div class="col-6">
+                      <label>productImageUrl</label>
+                      <input type="text" [(ngModel)]="productObj.productImageUrl" class="form-control">
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6">
+                        <button class="btn btn-success">Сбросить</button>
+                      </div>
+                      <div class="col-6">
+                        <button class="btn btn-success" (click)="onSave()">Создать товар</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
     }
 </div>
+
+<button (click)="openAddClientForm()">➕ Создать</button>
+
+@if(showDialog()){
+  <app-modalDialog
+    [headerText]="'Header'"
+    [contentText]="'Content'"
+  ></app-modalDialog>
+}
 
