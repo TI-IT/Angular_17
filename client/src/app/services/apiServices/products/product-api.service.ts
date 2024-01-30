@@ -11,9 +11,6 @@ export class ProductApiService {
     private http: HttpClient
   ) { };
 
-  getAllCategory(){
-    return this.http.get(ConstantApi.API_SERVER + ConstantApi.METHODS.GET_ALL_ONE_SELECTED);
-  };
   getAllProducts(){
     return this.http.get(ConstantApi.API_SERVER + ConstantApi.METHODS.GET_ALL_PRODUCT);
   };

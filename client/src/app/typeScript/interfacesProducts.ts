@@ -3,6 +3,11 @@ import {fdatasync} from "node:fs";
 export interface ICatalog {
 
 }
+export interface IOneSelectCategories {
+  nameCategory: string;
+  name: string;
+}
+
 export interface ISheetMaterials{
   _id: string;
   name: string;

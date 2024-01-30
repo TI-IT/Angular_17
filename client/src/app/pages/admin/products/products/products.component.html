@@ -114,12 +114,19 @@
     }
 </div>
 
+@for(categ of categoryDataArray; track categ.id){
+  {{categ}}
+}@empty {
+  Empty list of categ
+
+}
+
 <button (click)="openAddClientForm()">➕ Создать</button>
 
 @if(showDialog()){
-  <app-modalDialog
+  <app-modal-dialog-selected-category
     [headerText]="'Header'"
     [contentText]="'Content'"
-  ></app-modalDialog>
+  ></app-modal-dialog-selected-category>
 }
 

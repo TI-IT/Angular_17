@@ -5,16 +5,23 @@ import {ProductApiService} from "../../../../services/apiServices/products/produ
 import {ToastrService} from "ngx-toastr";
 import {ModalDialogComponent} from "../../../../components/modalDialog/modalDialog.component";
 import {GeneralService} from "../../../../services/global/generalService/general.service";
+import {
+  ModalDialogSelectedCategoryComponent
+} from "../../../../components/modal-dialog-selected-category/modal-dialog-selected-category.component";
+import {CategoryDataService} from "../../../../services/data/category-data.service";
+import {IOneSelectCategories} from "../../../../typeScript/interfacesProducts";
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalDialogComponent],
+  imports: [CommonModule, FormsModule, ModalDialogSelectedCategoryComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit {
   showDialog =  this.generalService.showModalDialog
+  categoryDataArray:IOneSelectCategories[] = this.categoryData.categoryList()
+
   // Переменная для отображения
   isSidePanelVisible: boolean = false;
   productObj: any = {
@@ -56,20 +63,13 @@ export class ProductsComponent implements OnInit {
     private productSrv: ProductApiService,
     private toaster: ToastrService,
     private generalService: GeneralService,
+    private categoryData: CategoryDataService,
   ) {
   }
 
   ngOnInit() {
-    console.log()
-    this.getAllCategory();
     this.getAllProducts();
     this.getAllSheetMaterials();
-  }
-
-  getAllCategory() {
-    this.productSrv.getAllCategory().subscribe((res: any) => {
-      this.categoryList = res.data;
-    })
   }
 
   getAllProducts() {
