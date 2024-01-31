@@ -6,6 +6,7 @@ export interface ICatalog {
 export interface IOneSelectCategories {
   nameCategory: string;
   name: string;
+  value: string;
 }
 
 export interface ISheetMaterials{

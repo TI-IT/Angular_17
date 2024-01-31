@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IOneSelectCategories, ISheetMaterials} from "../../../../../../typeScript/interfacesProducts";
-import {DialogAddSheetMaterialsComponent} from "../dialog-add-sheet-materials.component";
 import {GeneralService} from "../../../../../../services/global/generalService/general.service";
 import {DialogAddOneCategoryComponent} from "../../dialog-add-one-category/dialog-add-one-category.component";
 
@@ -9,7 +8,7 @@ import {DialogAddOneCategoryComponent} from "../../dialog-add-one-category/dialo
   selector: 'app-add-sheet-materials',
   standalone: true,
   imports: [
-    ReactiveFormsModule, FormsModule, DialogAddSheetMaterialsComponent, DialogAddOneCategoryComponent
+    ReactiveFormsModule, FormsModule, DialogAddOneCategoryComponent
   ],
   templateUrl: './add-sheet-materials.component.html',
   styleUrl: './add-sheet-materials.component.scss'

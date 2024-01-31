@@ -45,7 +45,10 @@
     </div>
   </div>
   @if (showModalDialogOneCategory()){
-    <app-dialog-add-one-category></app-dialog-add-one-category>
+    <app-dialog-add-one-category
+      [name]="'Ед.Изм.'"
+      [nameCategory]="'unit'"
+    ></app-dialog-add-one-category>
   }
 </div>
 

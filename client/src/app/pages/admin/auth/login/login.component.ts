@@ -26,7 +26,6 @@ export class LoginComponent {
 
   onLogin() {
     if(this.loginObj.userName === "admin" && this.loginObj.password === "123"){
-      console.log("Вы вошли", 'Toastr fun!');
       this.toaster.success("Вы вошли", 'Success');
       //Перенаправляем по URL
       this.router.navigateByUrl('/products');

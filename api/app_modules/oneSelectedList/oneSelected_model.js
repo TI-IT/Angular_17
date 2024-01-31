@@ -10,6 +10,11 @@ const oneSelectedSchema = new mongoose.Schema({
         unique: true,
         type: String,
         required: true,
+    },
+    value: {
+        unique: true,
+        type: String,
+        required: true,
     }
 }, {autoCreate: true})
 

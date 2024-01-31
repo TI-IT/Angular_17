@@ -15,15 +15,15 @@ export class CategoriesService {
   };
 
   createCategory(obj: any){
-    return this.http.post(ConstantApi.API_SERVER + ConstantApi.METHODS.CREATE_PRODUCT, obj)
+    return this.http.post(ConstantApi.API_SERVER + ConstantApi.METHODS.GET_ALL_ONE_SELECTED, obj)
   };
 
   updateCategory(obj: any){
-    return this.http.post(ConstantApi.API_SERVER + ConstantApi.METHODS.CREATE_PRODUCT, obj)
+    return this.http.post(ConstantApi.API_SERVER + ConstantApi.METHODS.GET_ALL_ONE_SELECTED, obj)
   };
 
   deleteCategory(obj: any){
-    return this.http.post(ConstantApi.API_SERVER + ConstantApi.METHODS.CREATE_PRODUCT, obj)
+    return this.http.post(ConstantApi.API_SERVER + ConstantApi.METHODS.GET_ALL_ONE_SELECTED, obj)
   };
 
 

@@ -45,6 +45,7 @@ module.exports.create = async function(req, res) {
     const oneSelected = new OneSelected({
         nameCategory: req.body.nameCategory,
         name: req.body.name,
+        value: req.body.value,
     })
     try {
         await oneSelected.save()
