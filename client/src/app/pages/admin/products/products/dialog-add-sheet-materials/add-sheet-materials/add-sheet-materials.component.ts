@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IOneSelectCategories, ISheetMaterials} from "../../../../../../typeScript/interfacesProducts";
 import {GeneralService} from "../../../../../../services/global/generalService/general.service";
 import {DialogAddOneCategoryComponent} from "../../dialog-add-one-category/dialog-add-one-category.component";
+import {CategoriesService} from "../../../../../../services/apiServices/products/categories.service";
+import {CategoryDataService} from "../../../../../../services/data/category-data.service";
 
 @Component({
   selector: 'app-add-sheet-materials',
@@ -13,9 +15,11 @@ import {DialogAddOneCategoryComponent} from "../../dialog-add-one-category/dialo
   templateUrl: './add-sheet-materials.component.html',
   styleUrl: './add-sheet-materials.component.scss'
 })
-export class AddSheetMaterialsComponent {
+export class AddSheetMaterialsComponent implements OnInit{
 
   showModalDialogOneCategory =  this.generalService.showModalDialogOneCategory
+  categoryList = this.categoryListDataService.categoryList
+
   sheetMaterials: ISheetMaterials = {
     name: '',
     vendorCode: '',
@@ -34,11 +38,26 @@ export class AddSheetMaterialsComponent {
     createDate: new Date(), // Initialize with a Date object
   }
 
-  oneSelectedList!:IOneSelectCategories[]
-
   constructor(
     private generalService: GeneralService,
+    private apiCategoriesService: CategoriesService,
+    private categoryListDataService: CategoryDataService,
   ) {
+  }
+
+  ngOnInit() {
+    this.getAllCategory()
+  }
+  getChildData(event: any){
+    if(event){
+      this.getAllCategory()
+    }
+  }
+
+  getAllCategory(){
+    this.apiCategoriesService.getAllCategory().subscribe((res: any) => {
+      this.categoryList.set(res.data)
+    })
   }
 
   onCreate(){

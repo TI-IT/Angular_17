@@ -2,12 +2,10 @@ const mongoose = require('mongoose')
 
 const oneSelectedSchema = new mongoose.Schema({
     nameCategory: {
-        unique: true,
         type: String,
         required: true,
     },
     name: {
-        unique: true,
         type: String,
         required: true,
     },

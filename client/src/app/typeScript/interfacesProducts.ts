@@ -4,6 +4,7 @@ export interface ICatalog {
 
 }
 export interface IOneSelectCategories {
+  _id?: string;
   nameCategory: string;
   name: string;
   value: string;

@@ -35,10 +35,11 @@
     <label>Ед.Изм.</label>
     <div class="col-md-4">
       <select [(ngModel)]="sheetMaterials.unit" class="form-select">
-        <!--  @for (cate of oneSelectedList;track cate.id) {-->
-        <!--    <option [value]="cate.id">{{ cate.name }}</option>-->
-        <!--  }-->
+          @for (cate of categoryList(); track cate._id) {
+            <option [value]="cate._id">{{ cate.value }}</option>
+          }
       </select>
+
     </div>
     <div class="col-md-2">
       <button class="btn btn-success" (click)="onCreateCategory()">Создать</button>
@@ -46,6 +47,7 @@
   </div>
   @if (showModalDialogOneCategory()){
     <app-dialog-add-one-category
+      (emitChildData)="getChildData($event)"
       [name]="'Ед.Изм.'"
       [nameCategory]="'unit'"
     ></app-dialog-add-one-category>
