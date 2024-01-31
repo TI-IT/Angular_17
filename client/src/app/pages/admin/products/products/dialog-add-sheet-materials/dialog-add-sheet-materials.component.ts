@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {AddSheetMaterialsComponent} from "./add-sheet-materials/add-sheet-materials.component";
 import {GeneralService} from "../../../../../services/global/generalService/general.service";
+import {AddSheetMaterialsComponent} from "./add-sheet-materials/add-sheet-materials.component";
 
 @Component({
   selector: 'app-dialog-add-sheet-materials',

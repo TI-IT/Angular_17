@@ -9,7 +9,7 @@ export interface IOneSelectCategories {
 }
 
 export interface ISheetMaterials{
-  _id: string;
+  _id?: string;
   name: string;
   vendorCode: string;
   imageSrc: string;
@@ -21,9 +21,10 @@ export interface ISheetMaterials{
   catalog: string;
   category: string;
   subcategories: string;
-  createDate: string;
+  createDate: Date;
   thickness: number;
   maxLength: number;
+  material: string;
 }
 
 export interface IProduct {

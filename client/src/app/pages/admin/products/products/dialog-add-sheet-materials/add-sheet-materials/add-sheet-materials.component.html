@@ -1,70 +1,61 @@
-<div >
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="row">
-          <div class="col-6">
-            <label>Наименование</label>
-            <input type="text" [(ngModel)]="sheetMaterials.name" class="form-control">
-          </div>
-        </div>
-        <div class="col-6">
-          <label>Артикул</label>
-          <input type="text" [(ngModel)]="sheetMaterials.vendorCode" class="form-control">
-        </div>
-        <div class="col-6">
-          <label>Изображение сылка</label>
-          <input type="number" [(ngModel)]="sheetMaterials.imageSrc" class="form-control">
-        </div>
-        <div class="col-6">
-          <label>Чертеж сылка</label>
-          <input type="text" [(ngModel)]="sheetMaterials.drawingImageSrc" class="form-control">
-        </div>
-        <div class="col-6">
-          <label>Себестоимость</label>
-          <input type="text" [(ngModel)]="sheetMaterials.price" class="form-control">
-        </div>
-        <div class="col-6">
-          <label>Валюта</label>
-          <input type="text" [(ngModel)]="sheetMaterials.currency" class="form-control">
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <label>Category</label>
-<!--            <select [(ngModel)]="sheetMaterials.categoryId" class="form-select">-->
-<!--              <option>-->
-<!--                <button (click)="openAddCategoryForm()">➕ Создать</button>-->
-<!--              </option>-->
-<!--              @for (cate of categoryList; track cate.id) {-->
-<!--                <option [value]="cate.categoryId">{{ cate.categoryName }}</option>-->
-<!--              } @empty {-->
-<!--                Empty list of cate-->
+<div class="row">
+  <div class="col-6">
+    <label>Наименование</label>
+    <input type="text" [(ngModel)]="sheetMaterials.name" class="form-control">
+  </div>
+  <div class="col-6">
+    <label>Артикул</label>
+    <input type="text" [(ngModel)]="sheetMaterials.vendorCode" class="form-control">
+  </div>
+  <div class="col-6">
+    <label>Изображение сылка</label>
+    <input type="text" [(ngModel)]="sheetMaterials.imageSrc" class="form-control">
+  </div>
+  <div class="col-6">
+    <label>Чертеж сылка</label>
+    <input type="text" [(ngModel)]="sheetMaterials.drawingImageSrc" class="form-control">
+  </div>
+</div>
 
-<!--              }-->
+<div class="row">
+  <div class="col-6">
+    <label>Себестоимость</label>
+    <input type="number" [(ngModel)]="sheetMaterials.price" class="form-control">
+  </div>
+  <div class="col-6">
+    <label>Валюта</label>
+    <input type="text" [(ngModel)]="sheetMaterials.currency" class="form-control">
+  </div>
+  <div class="col-6">
+    <label>Описание</label>
+    <input type="text" [(ngModel)]="sheetMaterials.description" class="form-control">
+  </div>
 
-<!--            </select>-->
-          </div>
-          <div class="col-6">
-            <label>deliveryTimeSpan</label>
-            <input type="text" [(ngModel)]="sheetMaterials.deliveryTimeSpan" class="form-control">
-          </div>
-        </div>
+  <div class="row">
+    <label>Ед.Изм.</label>
+    <div class="col-md-4">
+      <select [(ngModel)]="sheetMaterials.unit" class="form-select">
+        <!--  @for (cate of oneSelectedList;track cate.id) {-->
+        <!--    <option [value]="cate.id">{{ cate.name }}</option>-->
+        <!--  }-->
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-success" (click)="onCreateCategory()">Создать</button>
+    </div>
+  </div>
+  @if (showModalDialogOneCategory()){
+    <app-dialog-add-one-category></app-dialog-add-one-category>
+  }
+</div>
 
-
-        <div class="col-6">
-          <label>productImageUrl</label>
-          <input type="text" [(ngModel)]="sheetMaterials.productImageUrl" class="form-control">
-        </div>
-
-        <div class="row">
-          <div class="col-6">
-            <button class="btn btn-success">Сбросить</button>
-          </div>
-          <div class="col-6">
-            <button class="btn btn-success" (click)="onCreate()">Создать товар</button>
-          </div>
-        </div>
-      </div>
+<div class="row" id="actions">
+  <div class="row">
+    <div class="col-6">
+      <button class="btn btn-success">Сбросить</button>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-success" (click)="onCreate()">Создать товар</button>
     </div>
   </div>
 </div>
