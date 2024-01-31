@@ -10,20 +10,21 @@ import {
 } from "../../../../components/modal-dialog-selected-category/modal-dialog-selected-category.component";
 import {CategoryDataService} from "../../../../services/data/category-data.service";
 import {IOneSelectCategories} from "../../../../typeScript/interfacesProducts";
+import {AddSheetMaterialsComponent} from "./add-sheet-materials/add-sheet-materials.component";
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalDialogSelectedCategoryComponent],
+  imports: [CommonModule, FormsModule, ModalDialogSelectedCategoryComponent, AddSheetMaterialsComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit {
   showDialog =  this.generalService.showModalDialog
   categoryDataArray:IOneSelectCategories[] = this.categoryData.categoryList()
-
   // Переменная для отображения
-  isSidePanelVisible: boolean = false;
+  isSidePanelVisible = this.generalService.isSidePanelVisible
+
   productObj: any = {
     "productId": 0,
     "productSku": "",
@@ -36,24 +37,6 @@ export class ProductsComponent implements OnInit {
     "categoryId": 0,
     "productImageUrl": ""
   };
-
-  sheetMaterialsSchema: any = {
-    name: '',
-    vendorCode: '',
-    imageSrc: '',
-    drawingImageSrc: '',
-    price: 0,
-    currency: '',
-    description: '',
-    unit: '',
-    catalog: '',
-    category: '',
-    subcategories: '',
-    createDate: new Date(),
-    thickness: 0,
-    maxLength: 0,
-    material: '',
-  }
 
   categoryList: any[] = [];
   productList: any[] = [];
@@ -104,11 +87,6 @@ export class ProductsComponent implements OnInit {
 
 
   openSidePanel() {
-    this.isSidePanelVisible = true;
+    this.isSidePanelVisible.update(value => value = true)
   }
-
-  closeSidePanel() {
-    this.isSidePanelVisible = false;
-  }
-
 }
