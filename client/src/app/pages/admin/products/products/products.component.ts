@@ -3,28 +3,24 @@ import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {ProductApiService} from "../../../../services/apiServices/products/product-api.service";
 import {ToastrService} from "ngx-toastr";
-import {ModalDialogComponent} from "../../../../components/modalDialog/modalDialog.component";
 import {GeneralService} from "../../../../services/global/generalService/general.service";
 import {
   ModalDialogSelectedCategoryComponent
 } from "../../../../components/modal-dialog-selected-category/modal-dialog-selected-category.component";
 import {CategoryDataService} from "../../../../services/data/category-data.service";
 import {IOneSelectCategories} from "../../../../typeScript/interfacesProducts";
-import {AddSheetMaterialsComponent} from "./add-sheet-materials/add-sheet-materials.component";
+import {DialogAddSheetMaterialsComponent} from "./dialog-add-sheet-materials/dialog-add-sheet-materials.component";
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalDialogSelectedCategoryComponent, AddSheetMaterialsComponent],
+  imports: [CommonModule, FormsModule, ModalDialogSelectedCategoryComponent, DialogAddSheetMaterialsComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit {
   showDialog =  this.generalService.showModalDialog
   categoryDataArray:IOneSelectCategories[] = this.categoryData.categoryList()
-  // Переменная для отображения
-  isSidePanelVisible = this.generalService.isSidePanelVisible
-
   productObj: any = {
     "productId": 0,
     "productSku": "",
@@ -87,6 +83,6 @@ export class ProductsComponent implements OnInit {
 
 
   openSidePanel() {
-    this.isSidePanelVisible.update(value => value = true)
+    this.showDialog.update(value => value = true)
   }
 }

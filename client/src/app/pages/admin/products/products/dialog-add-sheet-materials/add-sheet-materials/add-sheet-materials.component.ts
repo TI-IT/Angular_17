@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {GeneralService} from "../../../../../services/global/generalService/general.service";
 
 @Component({
   selector: 'app-add-sheet-materials',
@@ -12,7 +11,6 @@ import {GeneralService} from "../../../../../services/global/generalService/gene
   styleUrl: './add-sheet-materials.component.scss'
 })
 export class AddSheetMaterialsComponent {
-  isSidePanelVisible = this.generalService.isSidePanelVisible
   sheetMaterials: any = {
     name: '',
     vendorCode: '',
@@ -34,18 +32,10 @@ export class AddSheetMaterialsComponent {
   categoryList:[] = []
 
   constructor(
-    private generalService: GeneralService
   ) {
-  }
-
-  openAddCategoryForm(){
-
   }
 
   onCreate(){
 
-  }
-  closeSidePanel() {
-    this.isSidePanelVisible.update(value => value = false)
   }
 }
