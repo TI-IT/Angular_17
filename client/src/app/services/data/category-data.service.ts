@@ -12,20 +12,20 @@ export class CategoryDataService implements OnInit{
   ) { }
 
   ngOnInit() {
-    this.getAllCategory();
   }
 
-  getAllCategory(){
-    this.apiCategoriesService.getAllCategory().subscribe((res: any) => {
-      this.categoryList = res.data.data;
-    })
-  }
-
-  createCategory(obj:IOneSelectCategories){
-    this.apiCategoriesService.createCategory(obj).subscribe((res: any) => {
-      console.log('createCategory', res.data)
-      this.categoryList.update(value => value = res.data.data);
-    })
-  }
+  // getAllCategory(){
+  //   console.log('CategoryDataService', this.categoryList())
+  //   this.apiCategoriesService.getAllCategory().subscribe((res: any) => {
+  //     this.categoryList = res.data.data;
+  //   })
+  // }
+  //
+  // createCategory(obj:IOneSelectCategories){
+  //   this.apiCategoriesService.createCategory(obj).subscribe((res: any) => {
+  //     console.log('createCategory', res.data)
+  //     this.categoryList.update(value => value = res.data.data);
+  //   })
+  // }
 
 }

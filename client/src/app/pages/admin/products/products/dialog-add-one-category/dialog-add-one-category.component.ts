@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IOneSelectCategories} from "../../../../../typeScript/interfacesProducts";
 import {CategoriesService} from "../../../../../services/apiServices/products/categories.service";
 import {ToastrService} from "ngx-toastr";
+import {CategoryDataService} from "../../../../../services/data/category-data.service";
 
 @Component({
   selector: 'app-dialog-add-one-category',
@@ -20,13 +21,15 @@ export class DialogAddOneCategoryComponent {
   @Input() nameCategory = '';
   @Output() emitChildData = new EventEmitter();
   showModalDialogOneCategory = this.generalService.showModalDialogOneCategory
-
+  categoryList = this.categoryListDataService.categoryList
   inputData!: IOneSelectCategories
   inputValue= ''
+  resData = {}
   constructor(
     private generalService: GeneralService,
     private apiCategoriesService: CategoriesService,
     private toaster: ToastrService,
+    private categoryListDataService: CategoryDataService,
   ) {
   }
 
@@ -37,11 +40,12 @@ export class DialogAddOneCategoryComponent {
         name: this.name,
         value: this.inputValue,
       }
-      console.log(this.inputData)
       this.apiCategoriesService.createCategory(this.inputData).subscribe((res: any) =>{
-        this.emitChildData.emit(res)
+        this.categoryList.update((value) => {
+          value.push(res.data);
+          return value;
+        });
       })
-
       this.showModalDialogOneCategory.update(value => value = false)
     } else {
       this.toaster.error("Заполните поле", 'Валидация');

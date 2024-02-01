@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IOneSelectCategories, ISheetMaterials} from "../../../../../../typeScript/interfacesProducts";
 import {GeneralService} from "../../../../../../services/global/generalService/general.service";
@@ -42,6 +42,7 @@ export class AddSheetMaterialsComponent implements OnInit{
     private generalService: GeneralService,
     private apiCategoriesService: CategoriesService,
     private categoryListDataService: CategoryDataService,
+    private cdr: ChangeDetectorRef,
   ) {
   }
 
@@ -50,13 +51,13 @@ export class AddSheetMaterialsComponent implements OnInit{
   }
   getChildData(event: any){
     if(event){
-      this.getAllCategory()
     }
   }
 
   getAllCategory(){
     this.apiCategoriesService.getAllCategory().subscribe((res: any) => {
-      this.categoryList.set(res.data)
+      this.categoryList.set(res.data);
+      // this.cdr.detectChanges(); // Вызов detectChanges()
     })
   }
 
