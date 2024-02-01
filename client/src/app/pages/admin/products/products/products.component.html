@@ -35,5 +35,8 @@
     }
 </div>
 
+<button class="btn btn-success" (click)="showComponent()">Show component</button>
 
-
+@if(showComp){
+  <app-test></app-test>
+}

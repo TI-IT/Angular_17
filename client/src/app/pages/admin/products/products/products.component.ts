@@ -10,11 +10,12 @@ import {
 import {CategoryDataService} from "../../../../services/data/category-data.service";
 import {IOneSelectCategories} from "../../../../typeScript/interfacesProducts";
 import {DialogAddSheetMaterialsComponent} from "./dialog-add-sheet-materials/dialog-add-sheet-materials.component";
+import {TestComponent} from "../../../../components/test/test.component";
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalDialogSelectedCategoryComponent, DialogAddSheetMaterialsComponent],
+  imports: [CommonModule, FormsModule, ModalDialogSelectedCategoryComponent, DialogAddSheetMaterialsComponent, TestComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
@@ -37,6 +38,8 @@ export class ProductsComponent implements OnInit {
   categoryList: any[] = [];
   productList: any[] = [];
   sheetMaterials: any[] = [];
+
+  showComp = false
 
   constructor(
     private productSrv: ProductApiService,
@@ -84,5 +87,9 @@ export class ProductsComponent implements OnInit {
 
   openSidePanel() {
     this.showDialog.update(value => value = true)
+  }
+
+  showComponent(){
+    this.showComp = !this.showComp
   }
 }
