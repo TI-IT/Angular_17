@@ -1,0 +1,60 @@
+<div mat-dialog-title>
+  <h2>Добавить Клиента</h2>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>ФИО</mat-label>
+        <input formControlName="clientsName" matInput placeholder="ФИО"/>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="email"/>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+    //Исправить формат сохранения
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Телефон</mat-label>
+        <input
+          [readonly] = readOnly()
+          maxlength="18"
+          type="text"
+          formControlName="numberPhone"
+          matInput
+          placeholder="телефон"
+          (input)="validatorsNumberPhone()"
+          onkeydown="if(event.repeat) event.preventDefault()"
+        />
+        {{this.viewFormatPhone()}}
+        <mat-icon matSuffix>mobile_screen_share</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Примечание</mat-label>
+        <input
+          #input4
+          formControlName="description"
+          matInput
+          placeholder="примечание"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Обновить': 'Сохранить'}}</button>
+    </div>
+  </div>
+</form>
+
+
+
+

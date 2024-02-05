@@ -1,0 +1,145 @@
+<div mat-dialog-title>
+  <h2>Добавление Заявки</h2>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+
+    <h2>Заявка№ {{applicationNumberLast()}}</h2>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Клиенты</mat-label>
+        <mat-select id="_clientsId" formControlName="_clientsId">
+
+          @if(clientsListArray() && clientsListArray().length > 0){
+            <div>
+              @for(client of clientsListArray(); track client._id){
+                <mat-option
+                  [value]="client._id"
+                >
+                  {{ client?.clientsName }}
+                </mat-option>
+              }
+
+            </div>
+          }
+
+
+
+          <mat-option [value]="data?.clientsName"
+          >
+            {{data?.clientsName}}
+          </mat-option>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="openAddClientForm()"
+          >
+            ➕ Создать
+          </button>
+        </mat-select>
+        <mat-icon matSuffix>store</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Вид работ</mat-label>
+        <mat-select id="_typesJobsId" formControlName="_typesJobsId">
+          @if(typesJobsNameList() && typesJobsNameList().length > 0){
+            <div>
+              @for (typesJob of typesJobsNameList(); track typesJob._id){
+                <mat-option
+                  [value]="typesJob._id"
+                >
+                  {{ typesJob.typesJobsName }}
+                </mat-option>
+              }
+            </div>
+          }
+
+
+          <mat-option></mat-option>
+          <button
+            class="btn"
+            mat-button
+            (click)="openDialogOneForm(
+            'typesJobsName',
+            'Вид работ',
+            'types_jobs')"
+          >
+            ➕ Создать
+          </button>
+        </mat-select>
+        <mat-icon matSuffix>store</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Источник заявки</mat-label>
+        <mat-select id="_applicationSourceId" formControlName="_applicationSourceId">
+          <button
+            class="btn"
+            mat-button
+            (click)="
+              openDialogOneForm(
+                'applicationSourceName',
+                'Источник заявки',
+                'applicationSource'
+              )
+            "
+          >
+            ➕ Создать
+          </button>
+          <mat-option></mat-option>
+          @if(applicationSourcesList() && applicationSourcesList().length > 0){
+            <div>
+              @for (applicationSource of applicationSourcesList(); track applicationSource._id){
+              <mat-option
+                [value]="applicationSource._id"
+              >
+                {{ applicationSource.applicationSourceName }}
+              </mat-option>
+              }
+            </div>
+          }
+
+        </mat-select>
+        <mat-icon matSuffix>waves</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Адрес объекта</mat-label>
+        <input
+          formControlName="addressObject"
+          matInput
+          placeholder="Адрес объекта"
+        />
+        <mat-icon matSuffix> add_location</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Примечание</mat-label>
+        <textarea
+          formControlName="description"
+          matInput
+          placeholder="примечание"
+        ></textarea>
+        <mat-icon matSuffix> wrap_text</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary"
+              type="submit">Сохранить
+      </button>
+    </div>
+  </div>
+</form>

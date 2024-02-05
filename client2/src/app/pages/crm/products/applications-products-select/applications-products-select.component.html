@@ -1,0 +1,5 @@
+@for (product of productsData; track product._id) {
+  <app-card-products [productsData]="product"></app-card-products>
+} @empty {
+  <li> Товаров не найдено! </li>
+}

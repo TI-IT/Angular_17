@@ -185,8 +185,16 @@ export interface ICurrency {
   currencyName: string;
   description: string;
 }
+
 export interface IClients {
+  _id?: string;
   clientsName: string;
-  companyName: string;
+  numberPhone: string;
+  password?: string;
+  email?: string;
+  role?: string;
+  description?: string;
+  createDate?: Date;
+  __v?: number;
 }
 

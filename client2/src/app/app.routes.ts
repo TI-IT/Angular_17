@@ -2,6 +2,20 @@ import { Routes } from '@angular/router';
 import {LoginComponent} from "./pages/login/login.component";
 import {AuthLayoutComponent} from "./layouts/auth-layout/auth-layout.component";
 import {RegisterComponent} from "./pages/register/register.component";
+import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
+import {AuthGuard} from "./classes/auth.guard";
+import {OrderComponent} from "./pages/crm/order/order.component";
+import {SpecificationComponent} from "./pages/crm/specification/specification.component";
+import {AdminComponent} from "./pages/crm/admin/admin.component";
+import {SupplyComponent} from "./pages/crm/supply/supply.component";
+import {ErrorComponent} from "./pages/error/error.component";
+import {AddClientsComponent} from "./pages/crm/clients/add-clients/add-clients.component";
+import {AllClientsComponent} from "./pages/crm/clients/all-clients/all-clients.component";
+import {DetailClientComponent} from "./pages/crm/clients/detail-client/detail-client.component";
+import {AllApplicationsComponent} from "./pages/crm/applications/all-applications/all-applications.component";
+import {AddApplicationsComponent} from "./pages/crm/applications/add-applications/add-applications.component";
+import {DetailApplicationsComponent} from "./pages/crm/applications/detail-applications/detail-applications.component";
+import {AllProductsComponent} from "./pages/crm/products/all-products/all-products.component";
 
 export const routes: Routes = [
   {
@@ -14,46 +28,47 @@ export const routes: Routes = [
   {
     path: '', component: SiteLayoutComponent,
     canActivate: [AuthGuard], children: [
-      {path: 'overview', component: OverviewComponent},
-      {path: 'analytics', component: AnalyticsComponent},
-      {path: 'history', component: HistoryComponent},
-      {path: 'categories', component: CategoriesComponent},
       {
-        path: 'products',
-        // canMatch: ['roleManagerGuard'],
-        loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
+        path: 'products', component: AllProductsComponent
       },
       {
         path: 'order',
-        canMatch: ['roleManagerGuard'],
-        loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule)
+        canMatch: ['roleManagerGuard'], component: OrderComponent
       },
       {
         path: 'specification',
-        canMatch: ['roleManagerGuard'],
-        loadChildren: () => import('./specifications/specifications.module').then(m => m.SpecificationsModule)
+        canMatch: ['roleManagerGuard'], component: SpecificationComponent
       },
       {
         path: 'clients',
-        canMatch: ['roleManagerGuard'],
-        loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)
+        canMatch: ['roleManagerGuard'], component: AllClientsComponent,
+        children: [
+          {
+            path: 'add', component: AddClientsComponent
+          },
+          {
+            path: 'detail/:id', component: DetailClientComponent
+          },
+        ]
+      },
+      {
+        path: 'applications',
+        canMatch: ['roleManagerGuard'], component: AllApplicationsComponent,
+        children: [
+          {
+            path: 'add', component: AddApplicationsComponent
+          },
+          {
+            path: 'detail/:id', component: DetailApplicationsComponent
+          },
+        ]
       },
       {
         path: 'admin',
-        canMatch: ['roleAdminGuard'],
-        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+        canMatch: ['roleAdminGuard'], component: AdminComponent
       },
+      {path: 'supply', component: SupplyComponent},
 
-      {
-        path: 'applications',
-        canMatch: ['roleManagerGuard'],
-        loadChildren: () => import('./applications/applications.module').then(m => m.ApplicationsModule)
-      },
-      {path: 'supply', loadChildren: () => import('./supply/supply.module').then(m => m.SupplyModule)},
-      {
-        path: 'google-sheets',
-        loadChildren: () => import('./google-sheets/google-sheets.module').then(m => m.GoogleSheetsModule)
-      },
       {path: '404', component: ErrorComponent},
       {path: '**', redirectTo: '404'},
     ]

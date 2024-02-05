@@ -1,0 +1,101 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <!-----------------------------------------------Left panel---------------------------------------->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               (click)="onSidenavSet(drawer)"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === true">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+
+      @for (link of links; track link.name){
+        <a
+           [routerLink]="[link.url]"
+           mat-list-item routerLink="overview"
+           routerLinkActive="active-link"
+           [routerLinkActiveOptions]="{exact: true}"
+           (click)="drawer.toggle()"
+        >{{link.name}}
+        </a>
+      }
+
+      <!--      <span *ngFor="let role of userRoles()">-->
+      <!--          <a mat-button routerLink="admin" routerLinkActive="active-link"-->
+      <!--             [routerLinkActiveOptions]="{exact:true}"-->
+      <!--             *ngIf="role === 'admin'"-->
+      <!--          >Admin panel</a>-->
+      <!--        </span>-->
+
+      <a mat-button routerLink="admin" routerLinkActive="active-link"
+         [routerLinkActiveOptions]="{exact:true}"
+      >Admin panel</a>
+
+
+      <a mat-list-item routerLinkActive="active-link"
+         [routerLinkActiveOptions]="{exact: true}" (click)="logout($event)">Выйти</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!------------------------------------------------------------------------------------------------>
+
+  <!-----------------------------------------------Top panel---------------------------------------->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async){
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      }
+
+
+      <span (click)="drawer.toggle()">Alumacom-CRM&nbsp; </span>
+
+      <span class="spacer"></span>
+
+      @for (link of links; track link.name){
+      <div [class.hidden]="isHandset$ | async">
+        <a
+           mat-button
+           [routerLink]="[link.url]"
+           routerLinkActive="active-link"
+           [routerLinkActiveOptions]="{exact:true}"
+        >{{link.name}}
+        </a>
+
+        @for (role of userRoles(); track $index){
+          <span>
+            @if(role === 'admin'){
+              <a mat-button routerLink="admin" routerLinkActive="active-link"
+                 [routerLinkActiveOptions]="{exact:true}"
+              >Admin panel</a>
+            }
+        </span>
+        }
+
+        <a
+          mat-button
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+          (click)="logout($event)"
+        >Выйти
+        </a>
+      </div>
+      }
+
+    </mat-toolbar>
+    <!---------------------------------------------------------------------------------------------->
+
+    <!-----------------------------------------------CONTENT---------------------------------------->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

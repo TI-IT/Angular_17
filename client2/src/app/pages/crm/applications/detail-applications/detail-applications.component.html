@@ -1,0 +1,32 @@
+@if(this.applicationDetails){
+  <div>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title> {{this.applicationDetails.applicationNumber}}</mat-card-title>
+        <mat-card-subtitle>{{this.applicationDetails.createDate}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://concrete.store/Content/images/not-available.jpg"
+           alt="Photo of a Shiba Inu" style="max-height: 100px; max-width: 100px">
+      <mat-card-content>
+        <p>адрес объекта: {{this.applicationDetails.addressObject}}</p>
+        <p>источник заявки: {{this.applicationDetails.applicationSourceName}}</p>
+        <p>{{this.applicationDetails.description}}</p>
+
+        <a [routerLink]="['/clients/detail', this.applicationDetails._clientsId]">{{this.applicationDetails.clientsName}}</a>
+
+<!--        <input [value]="">-->
+
+        <p>{{this.applicationDetails.email}}</p>
+        <p>{{viewFormatPhone}}</p>
+        <p>{{this.applicationDetails.typesJobsName}}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button (click)="onEditItem()">Товары</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+}
+
