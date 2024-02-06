@@ -1,10 +1,10 @@
-import { ApplicationConfig } from '@angular/core';
+import {ApplicationConfig, importProvidersFrom} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
 import {GoogleLoginProvider, SocialAuthServiceConfig} from "@abacritt/angularx-social-login";
 import {AuthService} from "./services/auth.service";
 import {TokenInterceptor} from "./classes/token.interceptor";
@@ -13,6 +13,9 @@ import {roleManagerGuard} from "./classes/role.manager";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(withFetch()),
+    provideClientHydration(),
+    importProvidersFrom(HttpClientModule),
     provideRouter(routes),
     provideClientHydration(),
     provideAnimationsAsync(),

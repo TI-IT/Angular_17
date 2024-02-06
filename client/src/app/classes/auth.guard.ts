@@ -6,7 +6,9 @@ export class AuthGuard {
   constructor(
     public _auth: AuthService,
     public router: Router
-  ) {}
+  ) {
+    console.log('AuthGuard-loginUserDb-Navigate')
+  }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

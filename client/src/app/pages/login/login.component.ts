@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, inject, OnDestroy, OnInit} from '@angular/core';
 import {HttpClientModule} from "@angular/common/http";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -9,7 +9,7 @@ import {AuthService} from "../../services/auth.service";
 import {IUser} from "../../typeScript/interfaces";
 import {MatIcon} from "@angular/material/icon";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
-import {CommonModule} from "@angular/common";
+import {CommonModule, DOCUMENT} from "@angular/common";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 
@@ -17,7 +17,6 @@ import {MatButton} from "@angular/material/button";
   selector: 'app-login',
   standalone: true,
   imports: [
-    HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
@@ -48,6 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _auth: AuthService,
     private _snackBar: SnackBarService,
     private _authGoogleService: SocialAuthService,
+
   ) {
   }
 
@@ -73,15 +73,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // Google Oauth
     this.socialAuthService.authState.subscribe((userGoogle) => {
-      console.log(userGoogle)
-      // this.userGoogle.set(userGoogle)
-      // if (userGoogle) {
-      //   const user: any = {
-      //     email: this.userGoogle().email,
-      //     password: this.userGoogle().email + this.userGoogle().id,
-      //   }
-      //   this.loginGoogle(user)
-      // }
+      this.userGoogle.set(userGoogle)
+      if (userGoogle) {
+        const user: any = {
+          email: this.userGoogle().email,
+          password: this.userGoogle().email + this.userGoogle().id,
+        }
+        this.loginUserDb(user)
+      }
     })
   }
 
@@ -97,15 +96,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginUserDb(this.loginForm.value)
   }
 
-  loginGoogle(user: IUser) {
-    this.loginUserDb(user)
-  }
+  // loginGoogle(user: IUser) {
+  //   this.loginUserDb(user)
+  // }
 
   loginUserDb(user: IUser) {
     this.aSub = this._auth.login(user).subscribe({
       next: ({message}) => {
         this._snackBar.openBottom(message)
-        this._router.navigate(['/products-scraping'])
+        this._router.navigate(['/products'])
       },
       error: error => {
         this._snackBar.openTop(error.error.message)

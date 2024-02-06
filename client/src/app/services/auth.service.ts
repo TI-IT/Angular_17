@@ -1,8 +1,9 @@
-import {Injectable, signal} from '@angular/core';
+import {Inject, Injectable, signal} from '@angular/core';
 import {Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {IRole} from "../typeScript/interfaces";
 import {GlobalService} from "./global.service";
+import {DOCUMENT} from "@angular/common";
 
 class IUser {
 }
@@ -12,13 +13,14 @@ class IUser {
 })
 export class AuthService {
   private serverUrl = this._globalService.serverUrl()
-  private _token: string | null = null;
+  public _token: string | null = null;
   public userGoogle:any = signal(null)
   public userRoles = signal([])
 
   constructor(
     private _http: HttpClient,
     private _globalService: GlobalService,
+    @Inject(DOCUMENT) private document: Document
   ) {
   }
 

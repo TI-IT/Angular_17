@@ -8,7 +8,6 @@ import {HttpClientModule} from "@angular/common/http";
   selector: 'app-root',
   standalone: true,
   imports: [
-    HttpClientModule,
     CommonModule,
     RouterOutlet,
     RouterModule,
@@ -24,6 +23,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     const potentialToken = localStorage.getItem('auth-token')
+    console.log('AppComponent', potentialToken)
     if(potentialToken !== null) {
       this._auth.setToken(potentialToken)
     }

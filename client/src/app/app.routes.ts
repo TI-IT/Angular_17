@@ -1,9 +1,8 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {LoginComponent} from "./pages/login/login.component";
 import {AuthLayoutComponent} from "./layouts/auth-layout/auth-layout.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
-import {AuthGuard} from "./classes/auth.guard";
 import {OrderComponent} from "./pages/crm/order/order.component";
 import {SpecificationComponent} from "./pages/crm/specification/specification.component";
 import {AdminComponent} from "./pages/crm/admin/admin.component";
@@ -17,6 +16,30 @@ import {AddApplicationsComponent} from "./pages/crm/applications/add-application
 import {DetailApplicationsComponent} from "./pages/crm/applications/detail-applications/detail-applications.component";
 import {AllProductsComponent} from "./pages/crm/products/all-products/all-products.component";
 
+const SiteLayoutAuthGuard = (): boolean => {
+  var token = localStorage.getItem('auth-token')
+  if (token) {
+    return true
+  } else {
+    window.alert('Доступ запрещен, для доступа к этой странице требуется вход в систему!');
+    location.assign(window.location.protocol)
+    return false
+  }
+  // if (!AuthService.isAuthenticated()) {
+  //   // SnackBar
+  //   window.alert('Доступ запрещен, для доступа к этой странице требуется вход в систему!');
+  //
+  //   Router.navigate(['login'], {
+  //     queryParams: {
+  //       accessDenied: true
+  //     }
+  //   }).then(r => return of(false))
+  //
+  // }
+  // return of(true);
+}
+
+
 export const routes: Routes = [
   {
     path: '', component: AuthLayoutComponent, children: [
@@ -26,8 +49,9 @@ export const routes: Routes = [
     ]
   },
   {
-    path: '', component: SiteLayoutComponent,
-    canActivate: [AuthGuard], children: [
+    path: '',
+    component: SiteLayoutComponent,
+    canActivate: [SiteLayoutAuthGuard], loadChildren: () => [
       {
         path: 'products', component: AllProductsComponent
       },
