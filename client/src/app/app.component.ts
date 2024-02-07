@@ -22,10 +22,16 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    const potentialToken = localStorage.getItem('auth-token')
-    console.log('AppComponent', potentialToken)
-    if(potentialToken !== null) {
-      this._auth.setToken(potentialToken)
+    if (typeof localStorage !== 'undefined') {
+      const potentialToken  = localStorage.getItem('auth-token')
+      if(potentialToken !== null) {
+        console.log('AppComponent-ngOnInit-localStorage')
+        this._auth.setToken(potentialToken)
+      }
+
+    } else {
+      console.log('AppComponent-ngOnInit-ERROR')
+      // Handle the case where localStorage is not available
     }
   }
 }

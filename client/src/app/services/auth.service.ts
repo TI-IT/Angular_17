@@ -59,7 +59,7 @@ export class AuthService {
       );
   }
 
-  setToken(token: string | null) {
+  setToken(token: string | null ) {
     this._token = token;
   }
 
@@ -74,7 +74,12 @@ export class AuthService {
   logout() {
     this.userGoogle.set(null);
     this.setToken(null);
-    localStorage.clear();
-    sessionStorage.clear();
+    if (typeof localStorage !== 'undefined') {
+      // Your code that uses localStorage
+      localStorage.clear();
+      sessionStorage.clear();
+    } else {
+      // Handle the case where localStorage is not available
+    }
   }
 }

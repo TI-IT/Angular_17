@@ -17,12 +17,16 @@ import {DetailApplicationsComponent} from "./pages/crm/applications/detail-appli
 import {AllProductsComponent} from "./pages/crm/products/all-products/all-products.component";
 
 const SiteLayoutAuthGuard = (): boolean => {
-  var token = localStorage.getItem('auth-token')
-  if (token) {
-    return true
+  if (typeof localStorage !== 'undefined') {
+    const token = localStorage.getItem('auth-token')
+    if (token) {
+      return true
+    } else {
+      window.alert('Доступ запрещен, для доступа к этой странице требуется вход в систему!');
+      location.assign(window.location.protocol)
+      return false
+    }
   } else {
-    window.alert('Доступ запрещен, для доступа к этой странице требуется вход в систему!');
-    location.assign(window.location.protocol)
     return false
   }
   // if (!AuthService.isAuthenticated()) {
