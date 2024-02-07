@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <app-admin-menu></app-admin-menu>
+  <span class="example-spacer"></span>
+
+  <a href="https://material.angular.io/components/categories" target="_blank"><h1>Angular Material</h1></a>
+
+  @for (link of links; track $index){
+    <a
+      mat-button
+      [routerLink]="[link.url]"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{exact:true}"
+    >{{link.name}}
+    </a>
+  }
+
+</mat-toolbar>
+
+<app-directory-app></app-directory-app>

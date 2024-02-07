@@ -1,5 +1,4 @@
 import {Component, Inject, inject, OnDestroy, OnInit} from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
@@ -47,7 +46,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _auth: AuthService,
     private _snackBar: SnackBarService,
     private _authGoogleService: SocialAuthService,
-
   ) {
   }
 

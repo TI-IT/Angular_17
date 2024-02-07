@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {IRole} from "../typeScript/interfaces";
 import {GlobalService} from "./global.service";
 import {DOCUMENT} from "@angular/common";
+import {CookieService} from "ngx-cookie-service";
 
 class IUser {
 }
@@ -20,6 +21,7 @@ export class AuthService {
   constructor(
     private _http: HttpClient,
     private _globalService: GlobalService,
+    private cookie: CookieService,
     @Inject(DOCUMENT) private document: Document
   ) {
   }
@@ -51,6 +53,10 @@ export class AuthService {
     return this._http.post<{ message: string, token: string, rolesArray: [] }>(`${this.serverUrl}/api/auth/login`, user)
       .pipe(
         tap(({token, rolesArray}) => {
+          this.cookie.set('auth-token', token);
+          this.cookie.set('user-roles', JSON.stringify(rolesArray));
+          alert('AuthService' + this.cookie.get('auth-token'))
+
           localStorage.setItem('auth-token', token);
           localStorage.setItem('user-roles', JSON.stringify(rolesArray)); // Save roles to Local Storage
           this.setToken(token);

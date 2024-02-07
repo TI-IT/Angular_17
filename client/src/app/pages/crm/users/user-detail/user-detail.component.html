@@ -1,0 +1,49 @@
+<div mat-dialog-title>
+  <h2>Редоктировать пользователя</h2>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Имя</mat-label>
+        <input formControlName="name" matInput placeholder="Имя"/>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Email"/>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+
+    @for(roleItem of role_id; track $index) {
+      <span>
+      <app-drop-down-list
+        [selectedName]="roleItem.roleName"
+        [dbName]="'roles'"
+        [valueSelectName]="'roleName'"
+        [titleSelectName]="'Роль'"
+        (selected)="rolesSelected({ role: roleItem, event: $event })">
+      </app-drop-down-list>
+  </span>
+    }
+
+    <button mat-raised-button type="button" (click)="addRole()">Добавить роль</button>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Обновить' : 'Сохранить'}}</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+

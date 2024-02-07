@@ -1,0 +1,30 @@
+<div class="col-md-6">
+  <mat-form-field appearance="outline">
+
+    <mat-label>{{matLabel}}</mat-label>
+    <mat-select id="{{formControlName}}">
+      <button
+        class="btn"
+        mat-button
+        color="accent"
+        (click)="openDialogOneForm()"
+      >
+        ➕ Создать
+      </button>
+      <mat-option></mat-option>
+      @if(dataList && dataList.length > 0){
+        <div>
+          @for (data of dataList; track $index) {
+            <mat-option
+              [value]="data._id"
+            >
+              {{ data.name }}
+            </mat-option>
+          }
+        </div>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+

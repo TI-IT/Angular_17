@@ -5,7 +5,6 @@ import {RegisterComponent} from "./pages/register/register.component";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
 import {OrderComponent} from "./pages/crm/order/order.component";
 import {SpecificationComponent} from "./pages/crm/specification/specification.component";
-import {AdminComponent} from "./pages/crm/admin/admin.component";
 import {SupplyComponent} from "./pages/crm/supply/supply.component";
 import {ErrorComponent} from "./pages/error/error.component";
 import {AddClientsComponent} from "./pages/crm/clients/add-clients/add-clients.component";
@@ -15,6 +14,8 @@ import {AllApplicationsComponent} from "./pages/crm/applications/all-application
 import {AddApplicationsComponent} from "./pages/crm/applications/add-applications/add-applications.component";
 import {DetailApplicationsComponent} from "./pages/crm/applications/detail-applications/detail-applications.component";
 import {AllProductsComponent} from "./pages/crm/products/all-products/all-products.component";
+import {AdminLayoutComponent} from "./pages/crm/admin/admin-layout/admin-layout.component";
+import {UsersListComponent} from "./pages/crm/users/users-list/users-list.component";
 
 const SiteLayoutAuthGuard = (): boolean => {
   if (typeof localStorage !== 'undefined') {
@@ -93,7 +94,12 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
-        canMatch: ['roleAdminGuard'], component: AdminComponent
+        canMatch: ['roleAdminGuard'], component: AdminLayoutComponent,
+        children: [
+          {
+            path: 'users', component: UsersListComponent
+          }
+        ]
       },
       {path: 'supply', component: SupplyComponent},
 

@@ -1,0 +1,7 @@
+@if(viewUsers){
+  <div>
+    <app-table-crud [data]="viewUsers" (editItem)="onEditItem($event)" (deleteItem)="onDeleteItem($event)"></app-table-crud>
+  </div>
+}
+<h1>Admin Users</h1>
+

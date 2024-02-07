@@ -1,6 +1,5 @@
 import {ApplicationConfig, importProvidersFrom} from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -10,6 +9,7 @@ import {AuthService} from "./services/auth.service";
 import {TokenInterceptor} from "./classes/token.interceptor";
 import {roleAdminGuard} from "./classes/role.admin.guard";
 import {roleManagerGuard} from "./classes/role.manager";
+import {CookieService} from "ngx-cookie-service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideAnimationsAsync(),
+    CookieService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

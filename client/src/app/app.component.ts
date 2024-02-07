@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, RouterOutlet} from '@angular/router';
 import {AuthService} from "./services/auth.service";
-import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
