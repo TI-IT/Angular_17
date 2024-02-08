@@ -6,50 +6,78 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell,
+  MatHeaderCell, MatHeaderCellDef,
   MatHeaderRow,
-  MatHeaderRowDef,
+  MatHeaderRowDef, MatNoDataRow,
   MatRow, MatRowDef, MatTable, MatTableDataSource
 } from "@angular/material/table";
-import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import {MatPaginator} from "@angular/material/paginator";
-import {MatSort, MatSortHeader} from "@angular/material/sort";
+import {MatSort, MatSortHeader, MatSortModule} from "@angular/material/sort";
 import {MatDialog} from "@angular/material/dialog";
-import {ApiProductService} from "../../../../services/api/api-product.service";
 import {GlobalSnackBarService} from "../../../../services/global-snack-bar.service";
-import {response} from "express";
+import {RouterLink} from "@angular/router";
+import {AuthService} from "../../../../services/auth.service";
+import {ApiProductsService} from "../../../../services/api/api-products.service";
+import {AddProductsComponent} from "../add-products/add-products.component";
 
 @Component({
   selector: 'app-all-products',
   standalone: true,
-  imports: [HttpClientModule, DatePipe, MatButton, MatCell, MatCellDef, MatColumnDef, MatFormField, MatHeaderCell, MatHeaderRow, MatHeaderRowDef, MatIcon, MatIconButton, MatInput, MatLabel, MatPaginator, MatRow, MatRowDef, MatSort, MatSortHeader, MatTable],
+  imports: [HttpClientModule,
+    MatFormFieldModule,
+    MatFormField,
+    MatSortModule,
+    MatInput,
+    MatButton,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatSort,
+    DatePipe,
+    RouterLink,
+    MatIcon,
+    MatIconButton,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatNoDataRow,
+    MatPaginator,
+    MatHeaderRow,
+    MatRow],
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.scss'
 })
 export class AllProductsComponent implements OnInit {
+  userRole = this._authService.userRoles
 
   displayedColumns: string[] = [
     // '_id',
-    'clientsName',
-    'numberPhone',
-    'password',
-    'email',
-    'role',
+    'name',
+    'vendorCode',
+    'imageSrc',
+    'drawingImageSrc',
+    'price',
+    'currency',
     'description',
-    'createDate',
-    'action',
+    'unit',
+    'catalog',
+    'categories',
+    'Subcategories',
   ];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  openAddEditEmpForm = signal<any | null>(null);
 
   constructor(
     private _dialog: MatDialog,
-    private _apiService: ApiProductService,
+    private _apiService: ApiProductsService,
     private _snackBarService: GlobalSnackBarService,
+    private _authService: AuthService,
   ) {
   }
 
@@ -83,6 +111,19 @@ export class AllProductsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  openAddEditEmpForm() {
+    const dialogRef = this._dialog.open(AddProductsComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getProductsList();
+        }
+      },
+    });
+  }
+
+
 }
 
 

@@ -2,7 +2,7 @@ import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
-  MatDialogClose, MatDialogContent,
+  MatDialogClose, MatDialogContent, MatDialogModule,
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
@@ -15,13 +15,12 @@ import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
-import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-clients',
   standalone: true,
   imports: [
-    HttpClientModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatDialogTitle,
     ReactiveFormsModule,

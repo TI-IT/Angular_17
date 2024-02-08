@@ -1,11 +1,11 @@
 import {ChangeDetectorRef, Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {IProduct} from "../../../../typeScript/interfaces";
 import {Subscription} from "rxjs";
-import {ApiProductService} from "../../../../services/api/api-product.service";
 import {SnackBarService} from "../../../../services/snack-bar.service";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {CardProductsComponent} from "../card-products/card-products.component";
 import {HttpClientModule} from "@angular/common/http";
+import {ApiProductsService} from "../../../../services/api/api-products.service";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {IProducts} from "../../../../typeScript/interfaces";
 
 @Component({
   selector: 'app-applications-products-select',
@@ -19,9 +19,9 @@ import {HttpClientModule} from "@angular/common/http";
 })
 export class ApplicationsProductsSelectComponent implements OnInit, OnDestroy {
   aSub!: Subscription;
-  productsData!: IProduct[];
+  productsData!: IProducts[];
   constructor(
-    private api: ApiProductService,
+    private api: ApiProductsService,
     private _snackBar: SnackBarService,
     private cdr: ChangeDetectorRef,
     //Инвормация о клиенте this.data

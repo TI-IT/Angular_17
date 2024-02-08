@@ -1,0 +1,77 @@
+<div mat-dialog-title>
+  <h2>Создать Товар</h2>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Наименование</mat-label>
+        <input formControlName="name" matInput placeholder="Наименование"/>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Артикул</mat-label>
+        <input formControlName="vendorCode" matInput placeholder="Артикул"/>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Сылка на фото</mat-label>
+        <input formControlName="imageSrc" matInput placeholder="Сылка на фото"/>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Сылка на чертеж</mat-label>
+        <input formControlName="drawingImageSrc" matInput placeholder="Сылка на чертеж"/>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Себестоимость</mat-label>
+        <input formControlName="price" matInput placeholder="Себестоимость"/>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Df.nf</mat-label>
+        <input formControlName="currency" matInput placeholder="Себестоимость"/>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Примечание</mat-label>
+        <input
+          #input5
+          formControlName="description"
+          matInput
+          placeholder="примечание"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Обновить': 'Сохранить'}}</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+

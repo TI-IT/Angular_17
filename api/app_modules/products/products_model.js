@@ -32,7 +32,7 @@ const productsSchema = new mongoose.Schema({
     catalog: {
         type: String,
     },
-    category: {
+    categories: {
         type: String,
     },
     Subcategories: {

@@ -67,11 +67,12 @@ module.exports.create = async function (req, res) {
         imageSrc: req.body.vendorCode,
         drawingImageSrc: req.body.drawingImageSrc,
         price: req.body.price,
-        currency_id: req.body.currency_id.selectedId,
+        currency: req.body.currency,
         description: req.body.description,
-        unit_id: req.body.unit_id.selectedId,
-        category_id: req.body.category_id.selectedId,
-        categoryTypes_id: req.body.categoryTypes_id.selectedId,
+        unit: req.body.unit,
+        catalog: req.body.catalog,
+        categories: req.body.categories,
+        Subcategories: req.body.Subcategories,
     });
 
     try {
@@ -103,9 +104,17 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.update = async function (req, res) {
-    const allowedProperties = ['name',
-        'vendorCode', 'imageSrc', 'drawingImageSrc', 'price', 'currency_id',
-        'description', 'unit_id', 'category_id', 'categoryTypes_id'];
+    const allowedProperties = [ 'name',
+        'vendorCode',
+        'imageSrc',
+        'drawingImageSrc',
+        'price',
+        'currency',
+        'description',
+        'unit',
+        'catalog',
+        'categories',
+        'Subcategories',];
 
     const updated = Object.keys(req.body)
         .filter(key => allowedProperties.includes(key))
@@ -126,7 +135,7 @@ module.exports.update = async function (req, res) {
         )
         res.status(200).json({
             success: true,
-            message: 'Продукт обнавлен.',
+            message: 'Товар обнавлен.',
             data: product
         })
     } catch (e) {

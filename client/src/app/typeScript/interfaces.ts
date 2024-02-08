@@ -116,18 +116,19 @@ export interface ICrudOneData {
   dataList: IDataList[]
 }
 
-export interface IProduct {
-  _id: string;
+export interface IProducts {
+  _id?: string;
   name: string;
   vendorCode: string;
   imageSrc: string;
   drawingImageSrc: string;
-  price: string;
-  currency_id: ICurrency;
-  categoryTypes_id: ICategoryType
-  description: string;
-  unit_id: IUint;
-  category_id: ICategory;
+  price: 0;
+  currency: string;
+  description: string
+  unit: string;
+  catalog: string;
+  categories: string;
+  Subcategories: string;
 }
 
 export interface ICategory {
