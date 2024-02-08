@@ -1,5 +1,4 @@
 import {ApplicationConfig, importProvidersFrom} from '@angular/core';
-import {provideRouter} from '@angular/router';
 import {provideClientHydration} from '@angular/platform-browser';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
@@ -10,6 +9,7 @@ import {roleAdminGuard} from "./classes/role.admin.guard";
 import {roleManagerGuard} from "./classes/role.manager";
 import {CookieService} from "ngx-cookie-service";
 import {routes} from "./app.routes";
+import {provideRouter} from '@angular/router';
 
 export const appConfig: ApplicationConfig = {
   providers: [

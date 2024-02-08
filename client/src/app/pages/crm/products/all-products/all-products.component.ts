@@ -7,8 +7,6 @@ import {
   MatTable,
   MatTableDataSource
 } from "@angular/material/table";
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort, MatSortModule} from "@angular/material/sort";
 import {MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
@@ -121,6 +119,16 @@ export class AllProductsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  deleteClients(id: string) {
+    //Подготовыть Alert на вопрос удаления
+    this._apiService.delete(id, 'products').subscribe({
+      next: (res) => {
+        this._snackBarService.openSnackBar('Employee deleted!', 'done');
+        this.getProductsList();
+      },
+      error: console.log,
+    });
   }
 
   openAddEditEmpForm() {

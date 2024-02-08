@@ -18,6 +18,7 @@ import {AdminLayoutComponent} from "./pages/crm/admin/admin-layout/admin-layout.
 import {UsersListComponent} from "./pages/crm/users/users-list/users-list.component";
 import {AddProductsComponent} from "./pages/crm/products/add-products/add-products.component";
 import {DetailProductsComponent} from "./pages/crm/products/detail-products/detail-products.component";
+import {TestProductsComponent} from "./pages/crm/products/test-products/test-products.component";
 
 const SiteLayoutAuthGuard = (): boolean => {
   if (typeof localStorage !== 'undefined') {
@@ -49,7 +50,8 @@ const SiteLayoutAuthGuard = (): boolean => {
 
 export const routes: Routes = [
   {
-    path: '', component: AuthLayoutComponent, children: [
+    path: '', component: AuthLayoutComponent,
+    children: [
       {path: '', redirectTo: '/login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
@@ -58,17 +60,17 @@ export const routes: Routes = [
   {
     path: '',
     component: SiteLayoutComponent,
+    // loadChildren: () => import('./home/home.routes').then(m => m.homeRoutes)
     canActivate: [SiteLayoutAuthGuard], loadChildren: () => [
       {
         path: 'products',
-        canMatch: ['roleManagerGuard'], component: AllProductsComponent,
-        children: [
-          {
-            path: 'add', component: AddProductsComponent
-          },
-          {
-            path: 'detail/:id', component: DetailProductsComponent
-          },
+        canMatch: ['roleManagerGuard'], component: AllProductsComponent
+      },
+      {
+        path: 'products', children: [
+          {path: 'add', component: AddProductsComponent},
+          {path: 'test', component: TestProductsComponent},
+          {path: 'detail/:id', component: DetailProductsComponent},
         ]
       },
       {
@@ -81,8 +83,10 @@ export const routes: Routes = [
       },
       {
         path: 'clients',
-        canMatch: ['roleManagerGuard'], component: AllClientsComponent,
-        children: [
+        canMatch: ['roleManagerGuard'], component: AllClientsComponent
+      },
+      {
+        path: 'clients', children: [
           {
             path: 'add', component: AddClientsComponent
           },
@@ -93,8 +97,10 @@ export const routes: Routes = [
       },
       {
         path: 'applications',
-        canMatch: ['roleManagerGuard'], component: AllApplicationsComponent,
-        children: [
+        canMatch: ['roleManagerGuard'], component: AllApplicationsComponent
+      },
+      {
+        path: 'applications', children: [
           {
             path: 'add', component: AddApplicationsComponent
           },
@@ -105,8 +111,10 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
-        canMatch: ['roleAdminGuard'], component: AdminLayoutComponent,
-        children: [
+        canMatch: ['roleAdminGuard'], component: AdminLayoutComponent
+      },
+      {
+        path: 'admin', children: [
           {
             path: 'users', component: UsersListComponent
           }

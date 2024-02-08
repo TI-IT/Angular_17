@@ -13,66 +13,65 @@
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-
       <!-- ID Column -->
-      <ng-container matColumnDef="clientsName">
-        <th mat-header-cell *matHeaderCellDef>Наименование</th>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Наименование</th>
         <td mat-cell *matCellDef="let row"> {{ row.name }}</td>
       </ng-container>
 
       <!-- First Name Column -->
-      <ng-container matColumnDef="numberPhone">
-        <th mat-header-cell *matHeaderCellDef> Артикул</th>
+      <ng-container matColumnDef="vendorCode">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header> Артикул</th>
         <td mat-cell *matCellDef="let row"> {{ row.vendorCode }}</td>
       </ng-container>
 
       <!-- Last Name Column -->
-      <ng-container matColumnDef="password">
+      <ng-container matColumnDef="imageSrc">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Изображение</th>
         <td mat-cell *matCellDef="let row"> {{ row.imageSrc }}</td>
       </ng-container>
 
       <!-- Mobile Column -->
-      <ng-container matColumnDef="email">
+      <ng-container matColumnDef="drawingImageSrc">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Чертеж</th>
         <td mat-cell *matCellDef="let row"> {{ row.drawingImageSrc }}</td>
       </ng-container>
 
       <!-- BMI Result Column -->
-      <ng-container matColumnDef="role">
+      <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Сибестоимость</th>
         <td mat-cell *matCellDef="let row"> {{ row.price }}</td>
       </ng-container>
 
       <!-- Gender Column -->
-      <ng-container matColumnDef="description">
+      <ng-container matColumnDef="currency">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Валюта</th>
         <td mat-cell *matCellDef="let row"> {{ row.currency }}</td>
       </ng-container>
 
       <!-- Enquiry Date Column -->
-      <ng-container matColumnDef="createDate">
+      <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Описание</th>
         <td mat-cell *matCellDef="let row"> {{ row.description | date }}</td>
       </ng-container>
 
       <!-- Enquiry Date Column -->
-      <ng-container matColumnDef="createDate">
+      <ng-container matColumnDef="unit">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Ед.Изм.</th>
         <td mat-cell *matCellDef="let row"> {{ row.unit }}</td>
       </ng-container>
       <!-- Enquiry Date Column -->
-      <ng-container matColumnDef="createDate">
+      <ng-container matColumnDef="catalog">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Каталог</th>
         <td mat-cell *matCellDef="let row"> {{ row.catalog }}</td>
       </ng-container>
       <!-- Enquiry Date Column -->
-      <ng-container matColumnDef="createDate">
+      <ng-container matColumnDef="categories">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Категория</th>
         <td mat-cell *matCellDef="let row"> {{ row.categories }}</td>
       </ng-container>
       <!-- Enquiry Date Column -->
-      <ng-container matColumnDef="createDate">
+      <ng-container matColumnDef="Subcategories">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Под Категория</th>
         <td mat-cell *matCellDef="let row"> {{ row.Subcategories }}</td>
       </ng-container>
@@ -81,7 +80,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button [routerLink]="['/clients/detail', row._id]" class="mx-2" color="primary">
+          <button mat-icon-button [routerLink]="['/products/detail', row._id]" class="mx-2" color="primary">
             <mat-icon>remove_red_eye</mat-icon>
           </button>
 

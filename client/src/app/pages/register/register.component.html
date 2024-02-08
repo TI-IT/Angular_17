@@ -2,34 +2,46 @@
   <h2>Создать аккаунт</h2>
 
 </div>
-<div *ngIf="message"  class="content-center mar-top-10">
-  <h4>{{message}}</h4>
-</div>
+@if(message){
+  <div class="content-center mar-top-10">
+    <h4>{{message}}</h4>
+  </div>
+}
+
 
 
 <!-- Добавление сообщения об ошибке Email-->
-<mat-error *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="content-center">
-  <!-- Здесь можно вывести различные сообщения об ошибках, в зависимости от состояния контрола -->
-  <span *ngIf="registerForm.get('email')?.errors?.['required']">Email не должен быть пустым</span>
-  <span *ngIf="registerForm.get('email')?.errors?.['email']">Введите корректный email адрес</span>
-</mat-error>
+@if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+  <mat-error class="content-center">
+    <!-- Здесь можно вывести различные сообщения об ошибках, в зависимости от состояния контрола -->
+    <span *ngIf="registerForm.get('email')?.errors?.['required']">Email не должен быть пустым</span>
+    <span *ngIf="registerForm.get('email')?.errors?.['email']">Введите корректный email адрес</span>
+  </mat-error>
+}
 
 <!-- Добавление сообщения об ошибке пароля-->
-<mat-error *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="content-center">
-  <!-- Здесь можно вывести различные сообщения об ошибках, в зависимости от состояния контрола -->
-  <span *ngIf="registerForm.get('password')?.errors?.['required']">Пароль не должен быть пустым
+@if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+  <mat-error class="content-center">
+    <!-- Здесь можно вывести различные сообщения об ошибках, в зависимости от состояния контрола -->
+    <span *ngIf="registerForm.get('password')?.errors?.['required']">Пароль не должен быть пустым
   </span>
-  <span
-    *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.errors?.['minlength']['requiredLength']">
+    <span
+      *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.errors?.['minlength']['requiredLength']">
       Пароль должен быть больше {{registerForm.get('password')?.errors?.['minlength']['requiredLength']}} символов.
       Сейчас {{registerForm.get('password')?.errors?.['minlength']['actualLength']}}
   </span>
-</mat-error>
+  </mat-error>
+}
+
+
 
 <!-- Добавление сообщения об ошибке повтарения пароля-->
-<mat-error *ngIf="passwordCheck"  class="content-center">
-  <span>Пароли не совподают</span>
-</mat-error>
+@if(passwordCheck){
+  <mat-error class="content-center">
+    <span>Пароли не совподают</span>
+  </mat-error>
+}
+
 
 <div class="content-center mar-top-10">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -72,8 +84,9 @@
 </div>
 
 <div class="content-center mar-top-10">
-  <asl-google-signin-button *ngIf="!userGoogle()"></asl-google-signin-button>
-
+  @if(!userGoogle()){
+    <asl-google-signin-button></asl-google-signin-button>
+  }
   <!--  <div *ngIf="userGoogle()">-->
   <!--    <img src="{{userGoogle().photoUrl}}">-->
   <!--    <div>-->
