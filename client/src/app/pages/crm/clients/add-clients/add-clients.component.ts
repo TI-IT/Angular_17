@@ -12,16 +12,18 @@ import {ClientsService} from "../../../../services/clients.service";
 import {ApiClientsService} from "../../../../services/api/api-clients.service";
 import {GlobalSnackBarService} from "../../../../services/global-snack-bar.service";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
-import {MatIcon} from "@angular/material/icon";
-import {MatInput} from "@angular/material/input";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-add-clients',
   standalone: true,
   imports: [
-    MatDialogModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule,
     MatDialogTitle,
     ReactiveFormsModule,
     MatFormField,

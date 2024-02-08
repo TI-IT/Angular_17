@@ -1,54 +1,65 @@
-import {Component, OnInit, signal, ViewChild} from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
-import {DatePipe} from "@angular/common";
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {
-  MatCell,
-  MatCellDef,
+  MatCell, MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef, MatNoDataRow,
-  MatRow, MatRowDef, MatTable, MatTableDataSource
+  MatHeaderCell,
+  MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatNoDataRow, MatRow, MatRowDef,
+  MatTable,
+  MatTableDataSource
 } from "@angular/material/table";
-import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
-import {MatIcon} from "@angular/material/icon";
-import {MatInput} from "@angular/material/input";
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
 import {MatPaginator} from "@angular/material/paginator";
-import {MatSort, MatSortHeader, MatSortModule} from "@angular/material/sort";
-import {MatDialog} from "@angular/material/dialog";
+import {MatSort, MatSortModule} from "@angular/material/sort";
+import {MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 import {GlobalSnackBarService} from "../../../../services/global-snack-bar.service";
-import {RouterLink} from "@angular/router";
 import {AuthService} from "../../../../services/auth.service";
+import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {DatePipe} from "@angular/common";
+import {RouterLink} from "@angular/router";
+import {MatIcon} from "@angular/material/icon";
 import {ApiProductsService} from "../../../../services/api/api-products.service";
 import {AddProductsComponent} from "../add-products/add-products.component";
+import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @Component({
   selector: 'app-all-products',
   standalone: true,
-  imports: [HttpClientModule,
+  imports: [
+    HttpClientModule,
     MatFormFieldModule,
+    MatDialogTitle,
+    ReactiveFormsModule,
+    MatDialogContent,
     MatFormField,
-    MatSortModule,
-    MatInput,
+    MatSelect,
+    MatOption,
     MatButton,
+    MatIcon,
+    MatInput,
+    MatDialogActions,
+    MatDialogClose,
     MatTable,
     MatColumnDef,
     MatHeaderCell,
     MatCell,
     MatHeaderCellDef,
     MatCellDef,
-    MatSort,
-    DatePipe,
-    RouterLink,
-    MatIcon,
+    MatSortModule,
     MatIconButton,
+    RouterLink,
+    MatHeaderRow,
     MatHeaderRowDef,
+    MatRow,
     MatRowDef,
     MatNoDataRow,
     MatPaginator,
-    MatHeaderRow,
-    MatRow],
+    DatePipe,
+  ],
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.scss'
 })

@@ -1,39 +1,36 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ProductsService} from "../../../../services/products.service";
-import {ApiProductsService} from "../../../../services/api/api-products.service";
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {
   MAT_DIALOG_DATA,
-  MatDialogActions, MatDialogClose,
-  MatDialogContent, MatDialogModule,
+  MatDialogActions,
+  MatDialogClose, MatDialogContent, MatDialogModule,
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ProductsService} from "../../../../services/products.service";
+import {ApiProductsService} from "../../../../services/api/api-products.service";
 import {GlobalSnackBarService} from "../../../../services/global-snack-bar.service";
+import {MatIcon} from "@angular/material/icon";
+import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
-import {MatFormField, MatFormFieldModule, MatLabel, MatSuffix} from "@angular/material/form-field";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
-import {MatInput, MatInputModule} from "@angular/material/input";
 
 @Component({
   selector: 'app-add-products',
   standalone: true,
   imports: [
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
+    MatFormFieldModule, MatInputModule, MatIconModule,
     MatDialogModule,
-    MatButton,
-    MatDialogActions,
-    MatDialogContent,
     MatDialogTitle,
-    MatFormField,
+    ReactiveFormsModule,
     MatIcon,
     MatInput,
-    MatLabel,
-    MatSuffix,
-    ReactiveFormsModule,
-    MatDialogClose
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+    MatDialogContent
   ],
   templateUrl: './add-products.component.html',
   styleUrl: './add-products.component.scss'

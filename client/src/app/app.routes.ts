@@ -16,6 +16,8 @@ import {DetailApplicationsComponent} from "./pages/crm/applications/detail-appli
 import {AllProductsComponent} from "./pages/crm/products/all-products/all-products.component";
 import {AdminLayoutComponent} from "./pages/crm/admin/admin-layout/admin-layout.component";
 import {UsersListComponent} from "./pages/crm/users/users-list/users-list.component";
+import {AddProductsComponent} from "./pages/crm/products/add-products/add-products.component";
+import {DetailProductsComponent} from "./pages/crm/products/detail-products/detail-products.component";
 
 const SiteLayoutAuthGuard = (): boolean => {
   if (typeof localStorage !== 'undefined') {
@@ -58,7 +60,16 @@ export const routes: Routes = [
     component: SiteLayoutComponent,
     canActivate: [SiteLayoutAuthGuard], loadChildren: () => [
       {
-        path: 'products', component: AllProductsComponent
+        path: 'products',
+        canMatch: ['roleManagerGuard'], component: AllProductsComponent,
+        children: [
+          {
+            path: 'add', component: AddProductsComponent
+          },
+          {
+            path: 'detail/:id', component: DetailProductsComponent
+          },
+        ]
       },
       {
         path: 'order',
