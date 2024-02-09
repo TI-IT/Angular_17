@@ -11,3 +11,14 @@
   text-align: left;
   background-color: #73A5BD;
 }
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px; /* Adjust the gap as needed */
+}
+.action-buttons {
+  margin-top: 20px; /* Add some spacing between the form and the action buttons */
+}
+.button-container {
+  text-align: right;
+}

@@ -70,10 +70,10 @@ export class AllProductsComponent implements OnInit {
     'vendorCode',
     'imageSrc',
     'drawingImageSrc',
+    'unit',
     'price',
     'currency',
     'description',
-    'unit',
     'catalog',
     'categories',
     'Subcategories',
@@ -91,19 +91,20 @@ export class AllProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProductsList()
+    this.getProductsList();
   }
 
   getProductsList() {
+    console.log("getProductsList")
     this._apiService.getAll('products').subscribe({
         next: (response) => {
-          console.log(response)
           const products = response.data; // Предположим, что массив клиентов находится в свойстве `data`
           if (!Array.isArray(products)) {
             // Теперь проверяем, действительно ли products является массивом
             console.error('Expected an array of products, but did not receive one:', products);
             return;
           }
+          this.dataSource = new MatTableDataSource<any>(products); // Initialize dataSource with an empty array
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },

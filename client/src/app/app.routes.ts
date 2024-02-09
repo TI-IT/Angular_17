@@ -18,7 +18,6 @@ import {AdminLayoutComponent} from "./pages/crm/admin/admin-layout/admin-layout.
 import {UsersListComponent} from "./pages/crm/users/users-list/users-list.component";
 import {AddProductsComponent} from "./pages/crm/products/add-products/add-products.component";
 import {DetailProductsComponent} from "./pages/crm/products/detail-products/detail-products.component";
-import {TestProductsComponent} from "./pages/crm/products/test-products/test-products.component";
 
 const SiteLayoutAuthGuard = (): boolean => {
   if (typeof localStorage !== 'undefined') {
@@ -69,7 +68,6 @@ export const routes: Routes = [
       {
         path: 'products', children: [
           {path: 'add', component: AddProductsComponent},
-          {path: 'test', component: TestProductsComponent},
           {path: 'detail/:id', component: DetailProductsComponent},
         ]
       },

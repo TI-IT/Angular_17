@@ -46,9 +46,20 @@ module.exports.getAll = async function (req, res) {
 
 module.exports.create = async function (req, res) {
     await dbConnect();
-
     // Пример проверки, что все необходимые поля предоставлены.
-    const requiredFields = ['name', 'vendorCode', 'price', 'currency_id', 'unit_id', 'category_id', 'categoryTypes_id'];
+    const requiredFields = [
+        'name',
+        'vendorCode',
+        'imageSrc',
+        'drawingImageSrc',
+        'price',
+        'currency',
+        'description',
+        'unit',
+        'catalog',
+        'categories',
+        'Subcategories'
+    ];
     for (let fieldName of requiredFields) {
         if (!req.body[fieldName]) {
             return res.status(400).json({
@@ -57,14 +68,13 @@ module.exports.create = async function (req, res) {
             });
         }
     }
-    console.log("***************************", req.body.currency_id)
 
     // Дальше идет создание нового продукта
     const product = new Product({
         // ...инициализация полей продукта из req.body...
         name: req.body.name,
         vendorCode: req.body.vendorCode,
-        imageSrc: req.body.vendorCode,
+        imageSrc: req.body.imageSrc,
         drawingImageSrc: req.body.drawingImageSrc,
         price: req.body.price,
         currency: req.body.currency,
