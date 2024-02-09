@@ -46,44 +46,45 @@
       </div>
 
 
+<!--      <div class="col-md-6">-->
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Валюта</mat-label>-->
+<!--          <input formControlName="currency" matInput placeholder="Валюта"/>-->
+<!--          <mat-icon matSuffix>mail_outline</mat-icon>-->
+<!--        </mat-form-field>-->
+<!--      </div>-->
+
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Валюта</mat-label>
-          <input formControlName="currency" matInput placeholder="Валюта"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-select id="currency" formControlName="currency">
+            @if(currencyNameList() && currencyNameList().length > 0){
+              <div>
+                @for (currency of currencyNameList(); track currency._id){
+                  <mat-option
+                    [value]="currency._id"
+                  >
+                    {{ currency.name }}
+                  </mat-option>
+                }
+              </div>
+            }
+            <mat-option></mat-option>
+            <button
+              class="btn"
+              mat-button
+              (click)="openDialogOneForm(
+            'Валюта',
+            'currency',
+            'Валюта'
+            )"
+            >
+              ➕ Создать
+            </button>
+          </mat-select>
+          <mat-icon matSuffix>store</mat-icon>
         </mat-form-field>
       </div>
-
-<!--      <div class="col-md-6">-->
-<!--        <mat-form-field appearance="outline">-->
-<!--          <mat-label>Вид работ</mat-label>-->
-<!--          <mat-select id="_typesJobsId" formControlName="_typesJobsId">-->
-<!--            @if(typesJobsNameList() && typesJobsNameList().length > 0){-->
-<!--              <div>-->
-<!--                @for (typesJob of typesJobsNameList(); track typesJob._id){-->
-<!--                  <mat-option-->
-<!--                    [value]="typesJob._id"-->
-<!--                  >-->
-<!--                    {{ typesJob.typesJobsName }}-->
-<!--                  </mat-option>-->
-<!--                }-->
-<!--              </div>-->
-<!--            }-->
-<!--            <mat-option></mat-option>-->
-<!--            <button-->
-<!--              class="btn"-->
-<!--              mat-button-->
-<!--              (click)="openDialogOneForm(-->
-<!--            'typesJobsName',-->
-<!--            'Вид работ',-->
-<!--            'types_jobs')"-->
-<!--            >-->
-<!--              ➕ Создать-->
-<!--            </button>-->
-<!--          </mat-select>-->
-<!--          <mat-icon matSuffix>store</mat-icon>-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">

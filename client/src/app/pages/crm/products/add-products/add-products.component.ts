@@ -3,7 +3,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {
-  MAT_DIALOG_DATA,
+  MAT_DIALOG_DATA, MatDialog,
   MatDialogActions,
   MatDialogClose, MatDialogContent, MatDialogModule,
   MatDialogRef,
@@ -19,6 +19,7 @@ import {MatButton} from "@angular/material/button";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
 import {DialogOneService} from "../../../../services/dialog-one.service";
+import {DialogOneCatalogsComponent} from "../../components/dialog-one-catalogs/dialog-one-catalogs.component";
 
 @Component({
   selector: 'app-add-products',
@@ -43,7 +44,7 @@ export class AddProductsComponent implements OnInit {
   empForm!: FormGroup;
 
   productsSelect = this._productService.productsSelect;
-  // currencyNameList = this._dialogOneService.;
+  currencyNameList = this._dialogOneService.currencyNameList;
 
   constructor(
     private _productService: ProductsService,
@@ -53,6 +54,7 @@ export class AddProductsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _snackBarService: GlobalSnackBarService,
     private _dialogOneService: DialogOneService,
+    private _dialog: MatDialog,
   ) {
   }
 
@@ -121,5 +123,16 @@ export class AddProductsComponent implements OnInit {
         })
       }
     }
+  }
+
+  openDialogOneForm(title: string, nameCategory: string, name: string) {
+    this._dialogOneService.title.set(title);
+    this._dialogOneService.nameCategory.set(nameCategory);
+    this._dialogOneService.name.set(name);
+    const dialogRef = this._dialog.open(DialogOneCatalogsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      // Обработайте результат здесь (если он есть)
+      // Например, обновите данные на странице
+    });
   }
 }

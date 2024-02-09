@@ -10,9 +10,13 @@ export class DialogOneService {
   name = signal<string>('')
   urlPostfix = signal<string>('')
 
+  //Catalogs
+  nameCategory = signal<string>('')
+
   typesJobsNameList = signal<ITypesJobs[]>([])
   applicationSourcesList = signal<IApplicationSources[]>([])
   jobTitleNameList = signal<IJobTitle[]>([])
+  categoryNameList = signal<IOneSelected[]>([])
   currencyNameList = signal<IOneSelected[]>([])
 
   constructor(
@@ -27,8 +31,8 @@ export class DialogOneService {
   addItemsApplicationSourceName(data: IApplicationSources[]) {
     this.applicationSourcesList.set(data)
   }
-  addItemsJobTitleName(data: IJobTitle[]) {
-    this.jobTitleNameList.set(data)
+  addItemsCatalogName(data: IOneSelected[]) {
+    this.categoryNameList.set(data)
   }
 
   openSnackBar(message: string, action: string = 'ok') {
