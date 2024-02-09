@@ -6,7 +6,6 @@ import {ApplicationsService} from "../../../../services/applications.service";
 import {GlobalFunctionsService} from "../../../../services/global-functions.service";
 import {SnackBarService} from "../../../../services/snack-bar.service";
 import {MatDialog} from "@angular/material/dialog";
-import {OrderComponent} from "../../order/order.component";
 import {
   MatCard,
   MatCardActions,
@@ -17,6 +16,7 @@ import {
 } from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
+import {DetailOrderComponent} from "../../order/detail-order/detail-order.component";
 
 @Component({
   selector: 'app-detail-applications',
@@ -119,7 +119,8 @@ export class DetailApplicationsComponent implements OnInit {
   }
 
   onEditItem() {
-    const dialogRef = this.dialog.open(OrderComponent, {
+    console.log('onEditItem() {')
+    const dialogRef = this.dialog.open(DetailOrderComponent, {
       width: 'auto',
       height: 'auto',
       data: this.productOrders

@@ -3,7 +3,6 @@ import {LoginComponent} from "./pages/login/login.component";
 import {AuthLayoutComponent} from "./layouts/auth-layout/auth-layout.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
-import {OrderComponent} from "./pages/crm/order/order.component";
 import {SpecificationComponent} from "./pages/crm/specification/specification.component";
 import {SupplyComponent} from "./pages/crm/supply/supply.component";
 import {ErrorComponent} from "./pages/error/error.component";
@@ -18,6 +17,9 @@ import {AdminLayoutComponent} from "./pages/crm/admin/admin-layout/admin-layout.
 import {UsersListComponent} from "./pages/crm/users/users-list/users-list.component";
 import {AddProductsComponent} from "./pages/crm/products/add-products/add-products.component";
 import {DetailProductsComponent} from "./pages/crm/products/detail-products/detail-products.component";
+import {AddOrderComponent} from "./pages/crm/order/add-order/add-order.component";
+import {DetailOrderComponent} from "./pages/crm/order/detail-order/detail-order.component";
+import {AllOrderComponent} from "./pages/crm/order/all-order/all-order.component";
 
 const SiteLayoutAuthGuard = (): boolean => {
   if (typeof localStorage !== 'undefined') {
@@ -73,7 +75,17 @@ export const routes: Routes = [
       },
       {
         path: 'order',
-        canMatch: ['roleManagerGuard'], component: OrderComponent
+        canMatch: ['roleManagerGuard'], component: AllOrderComponent
+      },
+      {
+        path: 'order', children: [
+          {
+            path: 'add', component: AddOrderComponent
+          },
+          {
+            path: 'detail/:id', component: DetailOrderComponent
+          },
+        ]
       },
       {
         path: 'specification',
