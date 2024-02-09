@@ -16,6 +16,9 @@ import {GlobalSnackBarService} from "../../../../services/global-snack-bar.servi
 import {MatIcon} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
+import {MatOption} from "@angular/material/autocomplete";
+import {MatSelect} from "@angular/material/select";
+import {DialogOneService} from "../../../../services/dialog-one.service";
 
 @Component({
   selector: 'app-add-products',
@@ -30,16 +33,17 @@ import {MatButton} from "@angular/material/button";
     MatDialogActions,
     MatButton,
     MatDialogClose,
-    MatDialogContent
+    MatDialogContent, MatOption, MatSelect
   ],
   templateUrl: './add-products.component.html',
   styleUrl: './add-products.component.scss'
 })
 export class AddProductsComponent implements OnInit {
   @ViewChild('input5') input5!: ElementRef;
-  empForm!: FormGroup
+  empForm!: FormGroup;
 
-  productsSelect = this._productService.productsSelect
+  productsSelect = this._productService.productsSelect;
+  // currencyNameList = this._dialogOneService.;
 
   constructor(
     private _productService: ProductsService,
@@ -48,10 +52,12 @@ export class AddProductsComponent implements OnInit {
     private _dialogRef: MatDialogRef<AddProductsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _snackBarService: GlobalSnackBarService,
+    private _dialogOneService: DialogOneService,
   ) {
   }
 
   ngOnInit(): void {
+    this.getAllCategories('currency');
     this.createEmpForm()
     if (this.data) {
       this.empForm.patchValue(this.data)
@@ -73,6 +79,18 @@ export class AddProductsComponent implements OnInit {
       Subcategories: '',
     })
   }
+
+  //Получаем данные для выподающих списков
+  getAllCategories(name: string) {
+    this._apiService.getAll('oneSelected').subscribe((res) => {
+      if (res.data.length > 0) {
+        //Филтруем по названию категории
+        console.log(res.data)
+        // this._dialogOneService.addItemsTypesJobsName(res.data);
+      }
+    });
+  }
+
 
   onFormSubmit() {
     if (this.empForm.valid) {

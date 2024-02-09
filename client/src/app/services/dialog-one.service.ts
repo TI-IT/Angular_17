@@ -1,5 +1,5 @@
 import {Injectable, signal} from '@angular/core';
-import {IApplicationSources, IJobTitle, ITypesJobs} from "../typeScript/interfaces";
+import {IApplicationSources, IJobTitle, IOneSelected, ITypesJobs} from "../typeScript/interfaces";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
@@ -13,6 +13,7 @@ export class DialogOneService {
   typesJobsNameList = signal<ITypesJobs[]>([])
   applicationSourcesList = signal<IApplicationSources[]>([])
   jobTitleNameList = signal<IJobTitle[]>([])
+  currencyNameList = signal<IOneSelected[]>([])
 
   constructor(
     private _snackBar: MatSnackBar,

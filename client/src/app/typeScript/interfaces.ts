@@ -10,6 +10,12 @@ export interface IRole {
   roleName: string,
   __v?: number
 }
+export interface IOneSelected {
+  _id?: string,
+  nameCategory: string,
+  name: string,
+  value: string,
+}
 
 export interface ICreateApplications {
   _id?: string;
