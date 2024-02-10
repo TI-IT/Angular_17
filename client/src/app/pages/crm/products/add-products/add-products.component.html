@@ -60,11 +60,11 @@
           <mat-select id="currency" formControlName="currency">
             @if(currencyNameList() && currencyNameList().length > 0){
               <div>
-                @for (currency of currencyNameList(); track currency._id){
+                @for (currency of currencyNameList(); track $index){
                   <mat-option
-                    [value]="currency._id"
+                    [value]="$index"
                   >
-                    {{ currency.name }}
+                    {{ currency }}
                   </mat-option>
                 }
               </div>

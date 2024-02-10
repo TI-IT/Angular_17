@@ -20,6 +20,7 @@ import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
 import {DialogOneService} from "../../../../services/dialog-one.service";
 import {DialogOneCatalogsComponent} from "../../components/dialog-one-catalogs/dialog-one-catalogs.component";
+import {IOneSelected} from "../../../../typeScript/interfaces";
 
 @Component({
   selector: 'app-add-products',
@@ -59,7 +60,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllCategories('currency');
+    this.getAllCategories();
     this.createEmpForm()
     if (this.data) {
       this.empForm.patchValue(this.data)
@@ -83,12 +84,21 @@ export class AddProductsComponent implements OnInit {
   }
 
   //Получаем данные для выподающих списков
-  getAllCategories(name: string) {
+  getAllCategories() {
+    this.filterCatalog('currency');
+  }
+
+  filterCatalog(nameCatalog: string){
     this._apiService.getAll('oneSelected').subscribe((res) => {
       if (res.data.length > 0) {
-        //Филтруем по названию категории
-        console.log(res.data)
-        // this._dialogOneService.addItemsTypesJobsName(res.data);
+        // Assuming res.data is an array
+        const catalog: IOneSelected[] = res.data;
+        // Filter by category and insert into currencyNameList
+        const filterCatalog: IOneSelected[] = catalog.filter(obj => obj.nameCategory === nameCatalog);
+        console.log(filterCatalog)
+        filterCatalog.forEach(nameCatalog => {
+          return nameCatalog.value;
+        });
       }
     });
   }

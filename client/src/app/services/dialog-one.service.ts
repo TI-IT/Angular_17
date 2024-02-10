@@ -17,7 +17,7 @@ export class DialogOneService {
   applicationSourcesList = signal<IApplicationSources[]>([])
   jobTitleNameList = signal<IJobTitle[]>([])
   categoryNameList = signal<IOneSelected[]>([])
-  currencyNameList = signal<IOneSelected[]>([])
+  currencyNameList = signal<string[]>([])
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -32,6 +32,7 @@ export class DialogOneService {
     this.applicationSourcesList.set(data)
   }
   addItemsCatalogName(data: IOneSelected[]) {
+    console.log('addItemsCatalogName', data)
     this.categoryNameList.set(data)
   }
 
