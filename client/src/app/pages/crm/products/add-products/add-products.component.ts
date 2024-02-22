@@ -86,19 +86,21 @@ export class AddProductsComponent implements OnInit {
   //Получаем данные для выподающих списков
   getAllCategories() {
     this.filterCatalog('currency');
+    console.log('getAllCategories() {', this.currencyNameList())
   }
 
   filterCatalog(nameCatalog: string){
     this._apiService.getAll('oneSelected').subscribe((res) => {
       if (res.data.length > 0) {
         // Assuming res.data is an array
+        const nameCatalogValue: string[] = [];
         const catalog: IOneSelected[] = res.data;
         // Filter by category and insert into currencyNameList
         const filterCatalog: IOneSelected[] = catalog.filter(obj => obj.nameCategory === nameCatalog);
-        console.log(filterCatalog)
         filterCatalog.forEach(nameCatalog => {
-          return nameCatalog.value;
+          nameCatalogValue.push(nameCatalog.value)
         });
+        this.currencyNameList.set(nameCatalogValue);
       }
     });
   }

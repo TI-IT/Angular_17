@@ -27,7 +27,6 @@ export class AppComponent implements OnInit{
         console.log('AppComponent-ngOnInit-localStorage')
         this._auth.setToken(potentialToken)
       }
-
     } else {
       console.log('AppComponent-ngOnInit-ERROR')
       // Handle the case where localStorage is not available
