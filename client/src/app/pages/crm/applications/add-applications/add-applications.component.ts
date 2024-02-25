@@ -23,6 +23,7 @@ import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import {HttpClientModule} from "@angular/common/http";
+import {SelectedOneComponent} from "../../components/selected-one/selected-one.component";
 
 @Component({
   selector: 'app-add-applications',
@@ -40,7 +41,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatIcon,
     MatInput,
     MatDialogActions,
-    MatDialogClose
+    MatDialogClose,
+    SelectedOneComponent
   ],
   templateUrl: './add-applications.component.html',
   styleUrl: './add-applications.component.scss'

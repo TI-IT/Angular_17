@@ -137,12 +137,14 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
-  openDialogOneForm(title: string, nameCategory: string, name: string) {
+  openDialogOneForm(title: string, nameCategory: string, name: string){
     this._dialogOneService.title.set(title);
     this._dialogOneService.nameCategory.set(nameCategory);
     this._dialogOneService.name.set(name);
     const dialogRef = this._dialog.open(DialogOneCatalogsComponent);
     dialogRef.afterClosed().subscribe(result => {
+      //Обновляем список
+      this.filterCatalog(nameCategory);
       // Обработайте результат здесь (если он есть)
       // Например, обновите данные на странице
     });

@@ -94,7 +94,6 @@ export class DialogOneCatalogsComponent implements OnInit {
 
   //Переделать чтобы автоматом ссылался на нужный service
   addItemsVal(val: any) {
-
     if (val.data) {
       this.dialogOneService.addItemsCatalogName([val.data.value])
     }
