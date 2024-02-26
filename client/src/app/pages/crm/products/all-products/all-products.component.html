@@ -26,15 +26,16 @@
       </ng-container>
 
       <!-- Last Name Column -->
+
       <ng-container matColumnDef="imageSrc">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Изображение</th>
-        <td mat-cell *matCellDef="let row"> {{ row.imageSrc }}</td>
+        <td mat-cell *matCellDef="let row"> <img [src]="row.imageSrc" style="width: 100px;"></td>
       </ng-container>
 
       <!-- Mobile Column -->
       <ng-container matColumnDef="drawingImageSrc">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Чертеж</th>
-        <td mat-cell *matCellDef="let row"> {{ row.drawingImageSrc }}</td>
+        <td mat-cell *matCellDef="let row"><img [src]="row.drawingImageSrc" style="width: 100px;"></td>
       </ng-container>
 
       <!-- BMI Result Column -->

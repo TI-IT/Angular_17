@@ -1,5 +1,3 @@
-
-
 <div mat-dialog-title>
   <h2>Создать Товар</h2>
 </div>
@@ -10,14 +8,14 @@
       <mat-form-field appearance="outline">
         <mat-label>Наименование</mat-label>
         <input formControlName="name" matInput placeholder="Наименование"/>
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-icon matSuffix>text_fields</mat-icon>
       </mat-form-field>
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Артикул</mat-label>
           <input formControlName="vendorCode" matInput placeholder="Артикул"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-icon matSuffix>code</mat-icon>
         </mat-form-field>
       </div>
 
@@ -25,7 +23,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Сылка на фото</mat-label>
           <input formControlName="imageSrc" matInput placeholder="Сылка на фото"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-icon matSuffix>burst_mode</mat-icon>
         </mat-form-field>
       </div>
 
@@ -33,7 +31,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Сылка на чертеж</mat-label>
           <input formControlName="drawingImageSrc" matInput placeholder="Сылка на чертеж"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-icon matSuffix>texture</mat-icon>
         </mat-form-field>
       </div>
 
@@ -45,24 +43,15 @@
         </mat-form-field>
       </div>
 
-
-<!--      <div class="col-md-6">-->
-<!--        <mat-form-field appearance="outline">-->
-<!--          <mat-label>Валюта</mat-label>-->
-<!--          <input formControlName="currency" matInput placeholder="Валюта"/>-->
-<!--          <mat-icon matSuffix>mail_outline</mat-icon>-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Валюта</mat-label>
           <mat-select id="currency" formControlName="currency">
-            @if(currencyNameList() && currencyNameList().length > 0){
+            @if (currencyNameList() && currencyNameList().length > 0) {
               <div>
-                @for (currency of currencyNameList(); track $index){
+                @for (currency of currencyNameList();track $index) {
                   <mat-option
-                    [value]="$index"
+                    [value]="currency"
                   >
                     {{ currency }}
                   </mat-option>
@@ -82,7 +71,7 @@
               ➕ Создать
             </button>
           </mat-select>
-          <mat-icon matSuffix>store</mat-icon>
+          <mat-icon matSuffix>attach_money</mat-icon>
         </mat-form-field>
       </div>
 
@@ -90,7 +79,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Описание</mat-label>
           <input formControlName="description" matInput placeholder="Описание"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-icon matSuffix>edit</mat-icon>
         </mat-form-field>
       </div>
 
@@ -98,16 +87,16 @@
         <mat-form-field appearance="outline">
           <mat-label>Ед.Изм.</mat-label>
           <mat-select id="unit" formControlName="unit">
-            @if(unitNameList() && unitNameList().length > 0){
-            <div>
-              @for (unit of unitNameList(); track $index){
-            <mat-option
-              [value]="$index"
-            >
-              {{ unit }}
-            </mat-option>
-            }
-            </div>
+            @if (unitNameList() && unitNameList().length > 0) {
+              <div>
+                @for (unit of unitNameList();track $index) {
+                  <mat-option
+                    [value]="unit"
+                  >
+                    {{ unit }}
+                  </mat-option>
+                }
+              </div>
             }
             <mat-option></mat-option>
             <button
@@ -122,7 +111,7 @@
               ➕ Создать
             </button>
           </mat-select>
-          <mat-icon matSuffix>store</mat-icon>
+          <mat-icon matSuffix>functions</mat-icon>
         </mat-form-field>
       </div>
 
@@ -130,16 +119,16 @@
         <mat-form-field appearance="outline">
           <mat-label>Каталог</mat-label>
           <mat-select id="catalog" formControlName="catalog">
-            @if(catalogNameList() && catalogNameList().length > 0){
-            <div>
-              @for (catalog of catalogNameList(); track $index){
-            <mat-option
-              [value]="$index"
-            >
-              {{ catalog }}
-            </mat-option>
-            }
-            </div>
+            @if (catalogNameList() && catalogNameList().length > 0) {
+              <div>
+                @for (catalog of catalogNameList();track $index) {
+                  <mat-option
+                    [value]="catalog"
+                  >
+                    {{ catalog }}
+                  </mat-option>
+                }
+              </div>
             }
             <mat-option></mat-option>
             <button
@@ -154,7 +143,7 @@
               ➕ Создать
             </button>
           </mat-select>
-          <mat-icon matSuffix>store</mat-icon>
+          <mat-icon matSuffix>folder</mat-icon>
         </mat-form-field>
       </div>
 
@@ -162,16 +151,16 @@
         <mat-form-field appearance="outline">
           <mat-label>Категория</mat-label>
           <mat-select id="categories" formControlName="categories">
-            @if(categoriesNameList() && categoriesNameList().length > 0){
-            <div>
-              @for (categories of categoriesNameList(); track $index){
-            <mat-option
-              [value]="$index"
-            >
-              {{ categories }}
-            </mat-option>
-            }
-            </div>
+            @if (categoriesNameList() && categoriesNameList().length > 0) {
+              <div>
+                @for (categories of categoriesNameList();track $index) {
+                  <mat-option
+                    [value]="categories"
+                  >
+                    {{ categories }}
+                  </mat-option>
+                }
+              </div>
             }
             <mat-option></mat-option>
             <button
@@ -186,23 +175,47 @@
               ➕ Создать
             </button>
           </mat-select>
-          <mat-icon matSuffix>store</mat-icon>
+          <mat-icon matSuffix>attachment</mat-icon>
         </mat-form-field>
       </div>
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Подкатегория</mat-label>
-          <input formControlName="Subcategories" matInput placeholder="Подкатегория"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-select id="Subcategories" formControlName="Subcategories">
+            @if (SubcategoriesNameList() && SubcategoriesNameList().length > 0) {
+              <div>
+                @for (Subcategories of SubcategoriesNameList();track $index) {
+                  <mat-option
+                    [value]="Subcategories"
+                  >
+                    {{ Subcategories }}
+                  </mat-option>
+                }
+              </div>
+            }
+            <mat-option></mat-option>
+            <button
+              class="btn"
+              mat-button
+              (click)="openDialogOneForm(
+            'Подкатегория',
+            'Subcategories',
+            'Подкатегория'
+            )"
+            >
+              ➕ Создать
+            </button>
+          </mat-select>
+          <mat-icon matSuffix>attach_file</mat-icon>
         </mat-form-field>
       </div>
 
       <!-- Add other form fields here -->
     </div>
     <!-- Add other actions or buttons here -->
-    <div  class=" action-buttons">
-      <div  class=" button-container">
+    <div class=" action-buttons">
+      <div class=" button-container">
         <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
         <button mat-raised-button color="primary" type="submit">{{ data ? 'Обновить' : 'Сохранить' }}</button>
       </div>

@@ -48,12 +48,14 @@ export class AddProductsComponent implements OnInit {
     'unit',
     'catalog',
     'categories',
+    'Subcategories',
   ]
   productsSelect = this._productService.productsSelect;
   currencyNameList = this._dialogOneService.currencyNameList;
   unitNameList = this._dialogOneService.unitNameList;
   catalogNameList = this._dialogOneService.catalogNameList;
   categoriesNameList = this._dialogOneService.categoriesNameList;
+  SubcategoriesNameList = this._dialogOneService.SubcategoriesNameList;
 
   constructor(
     private _productService: ProductsService,
@@ -108,6 +110,9 @@ export class AddProductsComponent implements OnInit {
       case 'categories':
         this.categoriesNameList.set(this.filterCatalog(nameCatalog));
         break;
+      case 'Subcategories':
+        this.SubcategoriesNameList.set(this.filterCatalog(nameCatalog));
+        break;
       default:
         //Здесь находятся инструкции, которые выполняются при отсутствии соответствующего значения
         //statements_def
@@ -148,6 +153,7 @@ export class AddProductsComponent implements OnInit {
             },
           })
       } else {
+        console.log(this.empForm.value)
         this._apiService.add('products', this.empForm.value).subscribe({
           next: (val: any) => {
             this._snackBarService.openSnackBar('Товар добавлен')
