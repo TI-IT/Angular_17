@@ -129,14 +129,6 @@
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Каталог</mat-label>
-          <input formControlName="catalog" matInput placeholder="Каталог"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Каталог</mat-label>
           <mat-select id="catalog" formControlName="catalog">
             @if(catalogNameList() && catalogNameList().length > 0){
             <div>
@@ -169,8 +161,32 @@
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Категория</mat-label>
-          <input formControlName="categories" matInput placeholder="Категория"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-select id="categories" formControlName="categories">
+            @if(categoriesNameList() && categoriesNameList().length > 0){
+            <div>
+              @for (categories of categoriesNameList(); track $index){
+            <mat-option
+              [value]="$index"
+            >
+              {{ categories }}
+            </mat-option>
+            }
+            </div>
+            }
+            <mat-option></mat-option>
+            <button
+              class="btn"
+              mat-button
+              (click)="openDialogOneForm(
+            'Категория',
+            'categories',
+            'Категория'
+            )"
+            >
+              ➕ Создать
+            </button>
+          </mat-select>
+          <mat-icon matSuffix>store</mat-icon>
         </mat-form-field>
       </div>
 

@@ -46,12 +46,14 @@ export class AddProductsComponent implements OnInit {
   nameCatalogArray: string[] = [
     'currency',
     'unit',
-    'catalog'
+    'catalog',
+    'categories',
   ]
   productsSelect = this._productService.productsSelect;
   currencyNameList = this._dialogOneService.currencyNameList;
   unitNameList = this._dialogOneService.unitNameList;
   catalogNameList = this._dialogOneService.catalogNameList;
+  categoriesNameList = this._dialogOneService.categoriesNameList;
 
   constructor(
     private _productService: ProductsService,
@@ -102,6 +104,9 @@ export class AddProductsComponent implements OnInit {
         break;
       case 'catalog':
         this.catalogNameList.set(this.filterCatalog(nameCatalog));
+        break;
+      case 'categories':
+        this.categoriesNameList.set(this.filterCatalog(nameCatalog));
         break;
       default:
         //Здесь находятся инструкции, которые выполняются при отсутствии соответствующего значения
