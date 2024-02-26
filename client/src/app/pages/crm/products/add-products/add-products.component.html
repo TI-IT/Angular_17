@@ -97,8 +97,32 @@
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Ед.Изм.</mat-label>
-          <input formControlName="unit" matInput placeholder="Ед.Изм."/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-select id="unit" formControlName="unit">
+            @if(unitNameList() && unitNameList().length > 0){
+            <div>
+              @for (unit of unitNameList(); track $index){
+            <mat-option
+              [value]="$index"
+            >
+              {{ unit }}
+            </mat-option>
+            }
+            </div>
+            }
+            <mat-option></mat-option>
+            <button
+              class="btn"
+              mat-button
+              (click)="openDialogOneForm(
+            'Ед.Изм.',
+            'unit',
+            'Ед.Изм.'
+            )"
+            >
+              ➕ Создать
+            </button>
+          </mat-select>
+          <mat-icon matSuffix>store</mat-icon>
         </mat-form-field>
       </div>
 
@@ -107,6 +131,38 @@
           <mat-label>Каталог</mat-label>
           <input formControlName="catalog" matInput placeholder="Каталог"/>
           <mat-icon matSuffix>mail_outline</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Каталог</mat-label>
+          <mat-select id="catalog" formControlName="catalog">
+            @if(catalogNameList() && catalogNameList().length > 0){
+            <div>
+              @for (catalog of catalogNameList(); track $index){
+            <mat-option
+              [value]="$index"
+            >
+              {{ catalog }}
+            </mat-option>
+            }
+            </div>
+            }
+            <mat-option></mat-option>
+            <button
+              class="btn"
+              mat-button
+              (click)="openDialogOneForm(
+            'Каталог',
+            'catalog',
+            'Каталог'
+            )"
+            >
+              ➕ Создать
+            </button>
+          </mat-select>
+          <mat-icon matSuffix>store</mat-icon>
         </mat-form-field>
       </div>
 

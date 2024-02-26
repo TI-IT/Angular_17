@@ -18,6 +18,8 @@ export class DialogOneService {
   jobTitleNameList = signal<IJobTitle[]>([])
   categoryNameList = signal<IOneSelected[]>([])
   currencyNameList = signal<string[]>([])
+  unitNameList = signal<string[]>([])
+  catalogNameList = signal<string[]>([])
 
   constructor(
     private _snackBar: MatSnackBar,

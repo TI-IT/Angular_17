@@ -43,9 +43,15 @@ import {IOneSelected} from "../../../../typeScript/interfaces";
 export class AddProductsComponent implements OnInit {
   @ViewChild('input5') input5!: ElementRef;
   empForm!: FormGroup;
-
+  nameCatalogArray: string[] = [
+    'currency',
+    'unit',
+    'catalog'
+  ]
   productsSelect = this._productService.productsSelect;
   currencyNameList = this._dialogOneService.currencyNameList;
+  unitNameList = this._dialogOneService.unitNameList;
+  catalogNameList = this._dialogOneService.catalogNameList;
 
   constructor(
     private _productService: ProductsService,
@@ -60,7 +66,9 @@ export class AddProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllCategories();
+    this.nameCatalogArray.forEach(name=> {
+      this.getAllCategories(name);
+    })
     this.createEmpForm()
     if (this.data) {
       this.empForm.patchValue(this.data)
@@ -84,25 +92,38 @@ export class AddProductsComponent implements OnInit {
   }
 
   //Получаем данные для выподающих списков
-  getAllCategories() {
-    this.filterCatalog('currency');
-    console.log('getAllCategories() {', this.currencyNameList())
+  getAllCategories(nameCatalog: string) {
+    switch (nameCatalog) {
+      case 'currency':
+        this.currencyNameList.set(this.filterCatalog(nameCatalog));
+        break;
+      case 'unit':
+        this.unitNameList.set(this.filterCatalog(nameCatalog));
+        break;
+      case 'catalog':
+        this.catalogNameList.set(this.filterCatalog(nameCatalog));
+        break;
+      default:
+        //Здесь находятся инструкции, которые выполняются при отсутствии соответствующего значения
+        //statements_def
+        break;
+    }
   }
 
-  filterCatalog(nameCatalog: string){
+  filterCatalog(nameCatalog: string) {
+    const nameCatalogValue: string[] = [];
     this._apiService.getAll('oneSelected').subscribe((res) => {
       if (res.data.length > 0) {
         // Assuming res.data is an array
-        const nameCatalogValue: string[] = [];
         const catalog: IOneSelected[] = res.data;
         // Filter by category and insert into currencyNameList
         const filterCatalog: IOneSelected[] = catalog.filter(obj => obj.nameCategory === nameCatalog);
         filterCatalog.forEach(nameCatalog => {
           nameCatalogValue.push(nameCatalog.value)
         });
-        this.currencyNameList.set(nameCatalogValue);
       }
     });
+    return nameCatalogValue
   }
 
 
@@ -137,14 +158,14 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
-  openDialogOneForm(title: string, nameCategory: string, name: string){
+  openDialogOneForm(title: string, nameCategory: string, name: string) {
     this._dialogOneService.title.set(title);
     this._dialogOneService.nameCategory.set(nameCategory);
     this._dialogOneService.name.set(name);
     const dialogRef = this._dialog.open(DialogOneCatalogsComponent);
     dialogRef.afterClosed().subscribe(result => {
       //Обновляем список
-      this.filterCatalog(nameCategory);
+      this.getAllCategories(nameCategory);
       // Обработайте результат здесь (если он есть)
       // Например, обновите данные на странице
     });
