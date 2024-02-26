@@ -2,10 +2,16 @@
   margin-top: 10px;
 }
 
+.content-center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 .btn {
   width: 100%;
   text-align: left;
-  background-color: #73A5BD;
+  background-color: #071c28;
 }
 
 body.overflow-hidden {

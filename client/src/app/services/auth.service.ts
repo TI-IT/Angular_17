@@ -55,7 +55,7 @@ export class AuthService {
         tap(({token, rolesArray}) => {
           this.cookie.set('auth-token', token);
           this.cookie.set('user-roles', JSON.stringify(rolesArray));
-          alert('AuthService' + this.cookie.get('auth-token'))
+          console.log('AuthService' + this.cookie.get('auth-token'));
 
           localStorage.setItem('auth-token', token);
           localStorage.setItem('user-roles', JSON.stringify(rolesArray)); // Save roles to Local Storage

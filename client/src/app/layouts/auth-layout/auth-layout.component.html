@@ -1,8 +1,20 @@
 <mat-toolbar color="primary">
   <span>Alumacom-CRM&nbsp; </span>
   <span class="spacer"></span>
-  <button [routerLink]="'/register'">Регистрация</button>
-  <button [routerLink]="'/login'">Войти</button>
+  <button
+    [routerLink]="'/register'"
+    type="submit"
+    mat-flat-button
+    color="Primary"
+  >Регистрация
+  </button>
+  <button
+    [routerLink]="'/login'"
+    type="submit"
+    mat-flat-button
+    color="Primary"
+  >Войти
+  </button>
 </mat-toolbar>
 
 <main class="content">

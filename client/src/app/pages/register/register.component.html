@@ -1,17 +1,17 @@
 <div class="content-center mar-top-10">
   <h2>Создать аккаунт</h2>
-
 </div>
-@if(message){
+
+@if (message) {
   <div class="content-center mar-top-10">
-    <h4>{{message}}</h4>
+    <h4>{{ message }}</h4>
   </div>
 }
 
 
 
 <!-- Добавление сообщения об ошибке Email-->
-@if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+@if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
   <mat-error class="content-center">
     <!-- Здесь можно вывести различные сообщения об ошибках, в зависимости от состояния контрола -->
     <span *ngIf="registerForm.get('email')?.errors?.['required']">Email не должен быть пустым</span>
@@ -20,15 +20,15 @@
 }
 
 <!-- Добавление сообщения об ошибке пароля-->
-@if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+@if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
   <mat-error class="content-center">
     <!-- Здесь можно вывести различные сообщения об ошибках, в зависимости от состояния контрола -->
     <span *ngIf="registerForm.get('password')?.errors?.['required']">Пароль не должен быть пустым
   </span>
     <span
       *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.errors?.['minlength']['requiredLength']">
-      Пароль должен быть больше {{registerForm.get('password')?.errors?.['minlength']['requiredLength']}} символов.
-      Сейчас {{registerForm.get('password')?.errors?.['minlength']['actualLength']}}
+      Пароль должен быть больше {{ registerForm.get('password')?.errors?.['minlength']['requiredLength'] }} символов.
+      Сейчас {{ registerForm.get('password')?.errors?.['minlength']['actualLength'] }}
   </span>
   </mat-error>
 }
@@ -36,7 +36,7 @@
 
 
 <!-- Добавление сообщения об ошибке повтарения пароля-->
-@if(passwordCheck){
+@if (passwordCheck) {
   <mat-error class="content-center">
     <span>Пароли не совподают</span>
   </mat-error>
@@ -84,7 +84,7 @@
 </div>
 
 <div class="content-center mar-top-10">
-  @if(!userGoogle()){
+  @if (!userGoogle()) {
     <asl-google-signin-button></asl-google-signin-button>
   }
   <!--  <div *ngIf="userGoogle()">-->

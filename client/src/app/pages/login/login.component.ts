@@ -1,4 +1,4 @@
-import {Component, Inject, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
@@ -31,13 +31,15 @@ import {MatButton} from "@angular/material/button";
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  socialAuthService=inject(SocialAuthService)
+  socialAuthService = inject(SocialAuthService)
   loginForm!: FormGroup;
   aSub!: Subscription;
   message!: string;
 
   // Google Oauth
   userGoogle = this._auth.userGoogle
+
+
 
   constructor(
     private _fb: FormBuilder,
