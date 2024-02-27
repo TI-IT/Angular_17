@@ -26,12 +26,10 @@ module.exports.create = async function (req, res) {
         'drawingImageSrc',
         'price',
         'currency',
-        'description',
         'unit',
         'catalog',
         'categories',
         'subCategories',
-        'materialThickness',
     ];
     for (let fieldName of requiredFields) {
         if (!req.body[fieldName]) {

@@ -94,7 +94,7 @@ export class AddProductsComponent implements OnInit {
   createEmpForm() {
     this.empForm = this._fb.group({
       name: ['', Validators.required],
-      vendorCode: '',
+      vendorCode: ['', Validators.required],
       imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSalEj8tnk7AywBgsPErBHh2_8vFwc2yZty-mqmzy3t6pP_lN3WnokkH8ghoeFPZ13cs3g&usqp=CAU',
       drawingImageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSalEj8tnk7AywBgsPErBHh2_8vFwc2yZty-mqmzy3t6pP_lN3WnokkH8ghoeFPZ13cs3g&usqp=CAU',
       price: 0,
@@ -104,7 +104,7 @@ export class AddProductsComponent implements OnInit {
       catalog: ['', Validators.required],
       categories: ['', Validators.required],
       subCategories: ['', Validators.required],
-      materialThickness: ['', Validators.required],
+      materialThickness:'',
     })
   }
 
