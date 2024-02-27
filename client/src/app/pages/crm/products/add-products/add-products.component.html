@@ -102,6 +102,40 @@
         </mat-form-field>
       </div>
 
+      @if (catalog === 'Листовой материал') {
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Толщина материала</mat-label>
+            <mat-select id="materialThickness" formControlName="materialThickness">
+              @if (materialThicknessNameList() && materialThicknessNameList().length > 0) {
+                <div>
+                  @for (materialThickness of materialThicknessNameList();track $index) {
+                    <mat-option
+                      [value]="materialThickness"
+                    >
+                      {{ materialThickness }}
+                    </mat-option>
+                  }
+                </div>
+              }
+              <mat-option></mat-option>
+              <button
+                class="btn"
+                mat-button
+                (click)="openDialogOneForm(
+      'Толщина материала',
+      'materialThickness',
+      'Толщина материала'
+      )"
+              >
+                ➕ Создать
+              </button>
+            </mat-select>
+            <mat-icon matSuffix>attach_file</mat-icon>
+          </mat-form-field>
+        </div>
+      }
+
       <mat-form-field appearance="outline">
         <mat-label>Наименование</mat-label>
         <input formControlName="name" matInput placeholder="Наименование"/>
@@ -116,39 +150,7 @@
         </mat-form-field>
       </div>
 
-      @if (catalog === 'Материалы') {
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Толщина материала</mat-label>
-          <mat-select id="materialThickness" formControlName="materialThickness">
-            @if (materialThicknessNameList() && materialThicknessNameList().length > 0) {
-      <div>
-        @for (materialThickness of materialThicknessNameList();track $index) {
-        <mat-option
-          [value]="materialThickness"
-        >
-        {{ materialThickness }}
-        </mat-option>
-        }
-      </div>
-      }
-      <mat-option></mat-option>
-      <button
-        class="btn"
-        mat-button
-        (click)="openDialogOneForm(
-      'Толщина материала',
-      'materialThickness',
-      'Толщина материала'
-      )"
-      >
-        ➕ Создать
-      </button>
-    </mat-select>
-    <mat-icon matSuffix>attach_file</mat-icon>
-  </mat-form-field>
-</div>
-      }
+
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">

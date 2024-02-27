@@ -41,6 +41,18 @@ const productsSchema = new mongoose.Schema({
     materialThickness: {
         type: String,
     },
+    dimensions: {
+        type: String,
+    },
+    material: {
+        type: String,
+    },
+    color: {
+        type: String,
+    },
+    set: {
+        type: String,
+    },
     createDate: {
         type: Date,
         required: true,
