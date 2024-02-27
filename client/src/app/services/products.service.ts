@@ -1,6 +1,5 @@
 import {Injectable, signal} from '@angular/core';
 import {IProducts} from "../typeScript/interfaces";
-import {Validators} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,8 @@ export class ProductsService {
     unit: '',
     catalog: '',
     categories: '',
-    Subcategories: '',
+    subCategories: '',
+    materialThickness: '',
   });
 
   constructor() {

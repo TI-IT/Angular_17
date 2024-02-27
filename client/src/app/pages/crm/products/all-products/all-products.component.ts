@@ -70,7 +70,8 @@ export class AllProductsComponent implements OnInit {
     'description',
     'catalog',
     'categories',
-    'Subcategories',
+    'subCategories',
+    'materialThickness',
     'action',
   ];
   dataSource!: MatTableDataSource<any>;

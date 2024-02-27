@@ -72,9 +72,14 @@
         <td mat-cell *matCellDef="let row"> {{ row.categories }}</td>
       </ng-container>
       <!-- Enquiry Date Column -->
-      <ng-container matColumnDef="Subcategories">
+      <ng-container matColumnDef="subCategories">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Под Категория</th>
-        <td mat-cell *matCellDef="let row"> {{ row.Subcategories }}</td>
+        <td mat-cell *matCellDef="let row"> {{ row.subCategories }}</td>
+      </ng-container>
+      <!-- Enquiry Date Column -->
+      <ng-container matColumnDef="materialThickness">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Толщина материала</th>
+        <td mat-cell *matCellDef="let row"> {{ row.materialThickness }}</td>
       </ng-container>
 
       <!-- Action Column -->

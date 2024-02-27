@@ -5,130 +5,21 @@
 <form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
     <div class="two-column-grid">
-      <mat-form-field appearance="outline">
-        <mat-label>Наименование</mat-label>
-        <input formControlName="name" matInput placeholder="Наименование"/>
-        <mat-icon matSuffix>text_fields</mat-icon>
-      </mat-form-field>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Артикул</mat-label>
-          <input formControlName="vendorCode" matInput placeholder="Артикул"/>
-          <mat-icon matSuffix>code</mat-icon>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Сылка на фото</mat-label>
-          <input formControlName="imageSrc" matInput placeholder="Сылка на фото"/>
-          <mat-icon matSuffix>burst_mode</mat-icon>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Сылка на чертеж</mat-label>
-          <input formControlName="drawingImageSrc" matInput placeholder="Сылка на чертеж"/>
-          <mat-icon matSuffix>texture</mat-icon>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Себестоимость</mat-label>
-          <input formControlName="price" matInput placeholder="Себестоимость"/>
-          <mat-icon matSuffix>mail_outline</mat-icon>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Валюта</mat-label>
-          <mat-select id="currency" formControlName="currency">
-            @if (currencyNameList() && currencyNameList().length > 0) {
-              <div>
-                @for (currency of currencyNameList();track $index) {
-                  <mat-option
-                    [value]="currency"
-                  >
-                    {{ currency }}
-                  </mat-option>
-                }
-              </div>
-            }
-            <mat-option></mat-option>
-            <button
-              class="btn"
-              mat-button
-              (click)="openDialogOneForm(
-            'Валюта',
-            'currency',
-            'Валюта'
-            )"
-            >
-              ➕ Создать
-            </button>
-          </mat-select>
-          <mat-icon matSuffix>attach_money</mat-icon>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Описание</mat-label>
-          <input formControlName="description" matInput placeholder="Описание"/>
-          <mat-icon matSuffix>edit</mat-icon>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Ед.Изм.</mat-label>
-          <mat-select id="unit" formControlName="unit">
-            @if (unitNameList() && unitNameList().length > 0) {
-              <div>
-                @for (unit of unitNameList();track $index) {
-                  <mat-option
-                    [value]="unit"
-                  >
-                    {{ unit }}
-                  </mat-option>
-                }
-              </div>
-            }
-            <mat-option></mat-option>
-            <button
-              class="btn"
-              mat-button
-              (click)="openDialogOneForm(
-            'Ед.Изм.',
-            'unit',
-            'Ед.Изм.'
-            )"
-            >
-              ➕ Создать
-            </button>
-          </mat-select>
-          <mat-icon matSuffix>functions</mat-icon>
-        </mat-form-field>
-      </div>
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Каталог</mat-label>
-          <mat-select id="catalog" formControlName="catalog">
+          <mat-select id="catalog" formControlName="catalog" (valueChange)="onCatalogSelectionChange($event)">
             @if (catalogNameList() && catalogNameList().length > 0) {
-              <div>
-                @for (catalog of catalogNameList();track $index) {
-                  <mat-option
-                    [value]="catalog"
-                  >
-                    {{ catalog }}
-                  </mat-option>
-                }
-              </div>
+            <div>
+              @for (catalog of catalogNameList();track $index) {
+            <mat-option
+              [value]="catalog"
+            >
+              {{catalog}}
+            </mat-option>
+            }
+            </div>
             }
             <mat-option></mat-option>
             <button
@@ -152,15 +43,15 @@
           <mat-label>Категория</mat-label>
           <mat-select id="categories" formControlName="categories">
             @if (categoriesNameList() && categoriesNameList().length > 0) {
-              <div>
-                @for (categories of categoriesNameList();track $index) {
-                  <mat-option
-                    [value]="categories"
-                  >
-                    {{ categories }}
-                  </mat-option>
-                }
-              </div>
+            <div>
+              @for (categories of categoriesNameList();track $index) {
+            <mat-option
+              [value]="categories"
+            >
+              {{ categories }}
+            </mat-option>
+            }
+            </div>
             }
             <mat-option></mat-option>
             <button
@@ -182,17 +73,17 @@
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Подкатегория</mat-label>
-          <mat-select id="Subcategories" formControlName="Subcategories">
-            @if (SubcategoriesNameList() && SubcategoriesNameList().length > 0) {
-              <div>
-                @for (Subcategories of SubcategoriesNameList();track $index) {
-                  <mat-option
-                    [value]="Subcategories"
-                  >
-                    {{ Subcategories }}
-                  </mat-option>
-                }
-              </div>
+          <mat-select id="subCategories" formControlName="subCategories">
+            @if (subCategoriesNameList() && subCategoriesNameList().length > 0) {
+            <div>
+              @for (subCategories of subCategoriesNameList();track $index) {
+            <mat-option
+              [value]="subCategories"
+            >
+              {{ subCategories }}
+            </mat-option>
+            }
+            </div>
             }
             <mat-option></mat-option>
             <button
@@ -200,7 +91,7 @@
               mat-button
               (click)="openDialogOneForm(
             'Подкатегория',
-            'Subcategories',
+            'subCategories',
             'Подкатегория'
             )"
             >
@@ -208,6 +99,151 @@
             </button>
           </mat-select>
           <mat-icon matSuffix>attach_file</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Наименование</mat-label>
+        <input formControlName="name" matInput placeholder="Наименование"/>
+        <mat-icon matSuffix>text_fields</mat-icon>
+      </mat-form-field>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Артикул</mat-label>
+          <input formControlName="vendorCode" matInput placeholder="Артикул"/>
+          <mat-icon matSuffix>code</mat-icon>
+        </mat-form-field>
+      </div>
+
+      @if (catalog === 'Материалы') {
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Толщина материала</mat-label>
+          <mat-select id="materialThickness" formControlName="materialThickness">
+            @if (materialThicknessNameList() && materialThicknessNameList().length > 0) {
+      <div>
+        @for (materialThickness of materialThicknessNameList();track $index) {
+        <mat-option
+          [value]="materialThickness"
+        >
+        {{ materialThickness }}
+        </mat-option>
+        }
+      </div>
+      }
+      <mat-option></mat-option>
+      <button
+        class="btn"
+        mat-button
+        (click)="openDialogOneForm(
+      'Толщина материала',
+      'materialThickness',
+      'Толщина материала'
+      )"
+      >
+        ➕ Создать
+      </button>
+    </mat-select>
+    <mat-icon matSuffix>attach_file</mat-icon>
+  </mat-form-field>
+</div>
+      }
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Сылка на фото</mat-label>
+          <input formControlName="imageSrc" matInput placeholder="Сылка на фото"/>
+          <mat-icon matSuffix>burst_mode</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Сылка на чертеж</mat-label>
+          <input formControlName="drawingImageSrc" matInput placeholder="Сылка на чертеж"/>
+          <mat-icon matSuffix>texture</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Ед.Изм.</mat-label>
+          <mat-select id="unit" formControlName="unit">
+            @if (unitNameList() && unitNameList().length > 0) {
+            <div>
+              @for (unit of unitNameList();track $index) {
+            <mat-option
+              [value]="unit"
+            >
+              {{ unit }}
+            </mat-option>
+            }
+            </div>
+            }
+            <mat-option></mat-option>
+            <button
+              class="btn"
+              mat-button
+              (click)="openDialogOneForm(
+            'Ед.Изм.',
+            'unit',
+            'Ед.Изм.'
+            )"
+            >
+              ➕ Создать
+            </button>
+          </mat-select>
+          <mat-icon matSuffix>functions</mat-icon>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Себестоимость</mat-label>
+          <input formControlName="price" matInput placeholder="Себестоимость"/>
+          <mat-icon matSuffix>mail_outline</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Валюта</mat-label>
+          <mat-select id="currency" formControlName="currency">
+            @if (currencyNameList() && currencyNameList().length > 0) {
+            <div>
+              @for (currency of currencyNameList();track $index) {
+            <mat-option
+              [value]="currency"
+            >
+              {{ currency }}
+            </mat-option>
+            }
+            </div>
+            }
+            <mat-option></mat-option>
+            <button
+              class="btn"
+              mat-button
+              (click)="openDialogOneForm(
+            'Валюта',
+            'currency',
+            'Валюта'
+            )"
+            >
+              ➕ Создать
+            </button>
+          </mat-select>
+          <mat-icon matSuffix>attach_money</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Описание</mat-label>
+          <input formControlName="description" matInput placeholder="Описание"/>
+          <mat-icon matSuffix>edit</mat-icon>
         </mat-form-field>
       </div>
 

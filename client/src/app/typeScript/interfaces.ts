@@ -134,7 +134,8 @@ export interface IProducts {
   unit: string;
   catalog: string;
   categories: string;
-  Subcategories: string;
+  subCategories: string;
+  materialThickness: string;
 }
 
 export interface ICategory {

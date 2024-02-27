@@ -35,7 +35,10 @@ const productsSchema = new mongoose.Schema({
     categories: {
         type: String,
     },
-    Subcategories: {
+    subCategories: {
+        type: String,
+    },
+    materialThickness: {
         type: String,
     },
     createDate: {

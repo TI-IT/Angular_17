@@ -21,7 +21,8 @@ export class DialogOneService {
   unitNameList = signal<string[]>([])
   catalogNameList = signal<string[]>([])
   categoriesNameList = signal<string[]>([])
-  SubcategoriesNameList = signal<string[]>([])
+  subCategoriesNameList = signal<string[]>([])
+  materialThicknessNameList = signal<string[]>([])
 
   constructor(
     private _snackBar: MatSnackBar,

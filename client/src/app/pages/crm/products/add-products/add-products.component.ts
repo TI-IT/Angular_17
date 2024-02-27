@@ -21,11 +21,13 @@ import {MatSelect} from "@angular/material/select";
 import {DialogOneService} from "../../../../services/dialog-one.service";
 import {DialogOneCatalogsComponent} from "../../components/dialog-one-catalogs/dialog-one-catalogs.component";
 import {IOneSelected} from "../../../../typeScript/interfaces";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-add-products',
   standalone: true,
   imports: [
+    CommonModule,
     MatFormFieldModule, MatInputModule, MatIconModule,
     MatDialogModule,
     MatDialogTitle,
@@ -43,19 +45,22 @@ import {IOneSelected} from "../../../../typeScript/interfaces";
 export class AddProductsComponent implements OnInit {
   @ViewChild('input5') input5!: ElementRef;
   empForm!: FormGroup;
+  catalog: any = '';
   nameCatalogArray: string[] = [
     'currency',
     'unit',
     'catalog',
     'categories',
-    'Subcategories',
+    'subCategories',
+    'materialThickness',
   ]
   productsSelect = this._productService.productsSelect;
   currencyNameList = this._dialogOneService.currencyNameList;
   unitNameList = this._dialogOneService.unitNameList;
   catalogNameList = this._dialogOneService.catalogNameList;
   categoriesNameList = this._dialogOneService.categoriesNameList;
-  SubcategoriesNameList = this._dialogOneService.SubcategoriesNameList;
+  subCategoriesNameList = this._dialogOneService.subCategoriesNameList;
+  materialThicknessNameList = this._dialogOneService.materialThicknessNameList;
 
   constructor(
     private _productService: ProductsService,
@@ -70,6 +75,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.nameCatalogArray.forEach(name=> {
       this.getAllCategories(name);
     })
@@ -79,19 +85,26 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
+  //ловим Событие от выподающего списка
+  onCatalogSelectionChange(event: Event) {
+    // Handle the selected value change here
+    this.catalog = event
+  }
+
   createEmpForm() {
     this.empForm = this._fb.group({
       name: ['', Validators.required],
       vendorCode: '',
-      imageSrc: '',
-      drawingImageSrc: '',
+      imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSalEj8tnk7AywBgsPErBHh2_8vFwc2yZty-mqmzy3t6pP_lN3WnokkH8ghoeFPZ13cs3g&usqp=CAU',
+      drawingImageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSalEj8tnk7AywBgsPErBHh2_8vFwc2yZty-mqmzy3t6pP_lN3WnokkH8ghoeFPZ13cs3g&usqp=CAU',
       price: 0,
       currency: '',
       description: '',
       unit: '',
-      catalog: '',
-      categories: '',
-      Subcategories: '',
+      catalog: ['', Validators.required],
+      categories: ['', Validators.required],
+      subCategories: ['', Validators.required],
+      materialThickness: ['', Validators.required],
     })
   }
 
@@ -110,8 +123,11 @@ export class AddProductsComponent implements OnInit {
       case 'categories':
         this.categoriesNameList.set(this.filterCatalog(nameCatalog));
         break;
-      case 'Subcategories':
-        this.SubcategoriesNameList.set(this.filterCatalog(nameCatalog));
+      case 'subCategories':
+        this.subCategoriesNameList.set(this.filterCatalog(nameCatalog));
+        break;
+      case 'materialThickness':
+        this.materialThicknessNameList.set(this.filterCatalog(nameCatalog));
         break;
       default:
         //Здесь находятся инструкции, которые выполняются при отсутствии соответствующего значения

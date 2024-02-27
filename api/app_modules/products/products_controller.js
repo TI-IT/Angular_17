@@ -30,7 +30,8 @@ module.exports.create = async function (req, res) {
         'unit',
         'catalog',
         'categories',
-        'Subcategories'
+        'subCategories',
+        'materialThickness',
     ];
     for (let fieldName of requiredFields) {
         if (!req.body[fieldName]) {
@@ -54,7 +55,8 @@ module.exports.create = async function (req, res) {
         unit: req.body.unit,
         catalog: req.body.catalog,
         categories: req.body.categories,
-        Subcategories: req.body.Subcategories,
+        subCategories: req.body.subCategories,
+        materialThickness: req.body.materialThickness,
     });
 
     try {
@@ -96,7 +98,8 @@ module.exports.update = async function (req, res) {
         'unit',
         'catalog',
         'categories',
-        'Subcategories'
+        'subCategories',
+        'materialThickness',
     ];
 
     const updated = Object.keys(req.body)
