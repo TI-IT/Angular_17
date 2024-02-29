@@ -24,6 +24,7 @@ import {MatIcon} from "@angular/material/icon";
 import {IClients} from "../../../../typeScript/interfaces";
 import {AddApplicationsComponent} from "../../applications/add-applications/add-applications.component";
 import {HttpClientModule} from "@angular/common/http";
+import {DialogService} from "../../../../services/dialog.service";
 
 @Component({
   selector: 'app-all-clients',
@@ -78,7 +79,7 @@ export class AllClientsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private _dialog: MatDialog,
+    private _dialogService: DialogService,
     private _apiService: ApiClientsService,
     private _snackBarService: GlobalSnackBarService,
     private _appService: ClientsService,
@@ -91,7 +92,7 @@ export class AllClientsComponent implements OnInit {
 
   openAddEditEmpForm() {
     this.viewFormatPhone.set('')
-    const dialogRef = this._dialog.open(AddClientsComponent);
+    const dialogRef = this._dialogService.openDialog(AddClientsComponent);
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
@@ -158,7 +159,7 @@ export class AllClientsComponent implements OnInit {
   }
 
   openEditForm(data: any) {
-    const dialogRef = this._dialog.open(AddClientsComponent, {
+    const dialogRef = this._dialogService.openDialog(AddClientsComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({
@@ -170,7 +171,7 @@ export class AllClientsComponent implements OnInit {
     });
   }
   openCreateApplication(data: any) {
-    const dialogRef = this._dialog.open(AddApplicationsComponent, {
+    const dialogRef = this._dialogService.openDialog(AddApplicationsComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({

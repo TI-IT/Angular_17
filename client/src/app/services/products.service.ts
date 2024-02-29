@@ -18,6 +18,10 @@ export class ProductsService {
     categories: '',
     subCategories: '',
     materialThickness: '',
+    dimensions: '',
+    material: '',
+    color: '',
+    weight: '',
   });
 
   constructor() {

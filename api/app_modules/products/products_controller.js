@@ -2,6 +2,24 @@ const Product = require("./products_model");
 const errorHandler = require('../../utils/errorHandler')
 const dbConnect = require('../../services/dbConnect');
 
+const requiredFields = [
+    'name',
+    'vendorCode',
+    'imageSrc',
+    'drawingImageSrc',
+    'price',
+    'currency',
+    'unit',
+    'catalog',
+    'categories',
+    'subCategories',
+    'materialThickness',
+    'dimensions',
+    'material',
+    'color',
+    'weight',
+];
+
 module.exports.getAll = async function (req, res) {
     await dbConnect();
     try {
@@ -19,18 +37,7 @@ module.exports.getAll = async function (req, res) {
 module.exports.create = async function (req, res) {
     await dbConnect();
     // Пример проверки, что все необходимые поля предоставлены.
-    const requiredFields = [
-        'name',
-        'vendorCode',
-        'imageSrc',
-        'drawingImageSrc',
-        'price',
-        'currency',
-        'unit',
-        'catalog',
-        'categories',
-        'subCategories',
-    ];
+
     for (let fieldName of requiredFields) {
         if (!req.body[fieldName]) {
             return res.status(400).json({
@@ -55,6 +62,10 @@ module.exports.create = async function (req, res) {
         categories: req.body.categories,
         subCategories: req.body.subCategories,
         materialThickness: req.body.materialThickness,
+        dimensions: req.body.dimensions,
+        material: req.body.material,
+        color: req.body.color,
+        weight: req.body.weight,
     });
 
     try {
@@ -86,22 +97,9 @@ module.exports.create = async function (req, res) {
 }
 
 module.exports.update = async function (req, res) {
-    const allowedProperties = ['name',
-        'vendorCode',
-        'imageSrc',
-        'drawingImageSrc',
-        'price',
-        'currency',
-        'description',
-        'unit',
-        'catalog',
-        'categories',
-        'subCategories',
-        'materialThickness',
-    ];
 
     const updated = Object.keys(req.body)
-        .filter(key => allowedProperties.includes(key))
+        .filter(key => requiredFields.includes(key))
         .reduce((obj, key) => {
             obj[key] = req.body[key];
             return obj;

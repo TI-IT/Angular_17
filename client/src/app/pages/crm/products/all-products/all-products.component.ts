@@ -9,7 +9,6 @@ import {
 } from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort, MatSortModule} from "@angular/material/sort";
-import {MatDialog} from "@angular/material/dialog";
 import {GlobalSnackBarService} from "../../../../services/global-snack-bar.service";
 import {AuthService} from "../../../../services/auth.service";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
@@ -22,6 +21,7 @@ import {ApiProductsService} from "../../../../services/api/api-products.service"
 import {AddProductsComponent} from "../add-products/add-products.component";
 import {HttpClientModule} from "@angular/common/http";
 import {AddOrderComponent} from "../../order/add-order/add-order.component";
+import {DialogService} from "../../../../services/dialog.service";
 
 @Component({
   selector: 'app-all-products',
@@ -72,14 +72,19 @@ export class AllProductsComponent implements OnInit {
     'categories',
     'subCategories',
     'materialThickness',
+    'dimensions',
+    'material',
+    'color',
+    'weight',
     'action',
   ];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+
   constructor(
-    private _dialog: MatDialog,
+    private _dialogService: DialogService,
     private _apiService: ApiProductsService,
     private _snackBarService: GlobalSnackBarService,
     private _authService: AuthService,
@@ -129,19 +134,17 @@ export class AllProductsComponent implements OnInit {
   }
 
   openAddEditEmpForm() {
-    const dialogRef = this._dialog.open(AddProductsComponent);
-    dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.getProductsList();
-        }
-      },
+    const dialogRef = this._dialogService.openDialog(AddProductsComponent);
+    dialogRef.afterClosed().subscribe(val => {
+      if (val) {
+        this.getProductsList();
+      }
     });
   }
 
 //Создание КП
   openCreateOrder(data: any) {
-    const dialogRef = this._dialog.open(AddOrderComponent, {
+    const dialogRef = this._dialogService.openDialog(AddOrderComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({
@@ -154,7 +157,7 @@ export class AllProductsComponent implements OnInit {
   }
 //Редоктирование Товара
   openEditForm(data: any) {
-    const dialogRef = this._dialog.open(AddProductsComponent, {
+    const dialogRef = this._dialogService.openDialog(AddProductsComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({

@@ -31,6 +31,7 @@ import {FormatPhonePipe} from "../../pipes/format-phone.pipe";
 import {DatePipe} from "@angular/common";
 import {MatTooltip} from "@angular/material/tooltip";
 import {HttpClientModule} from "@angular/common/http";
+import {DialogService} from "../../../../services/dialog.service";
 
 @Component({
   selector: 'app-all-applications',
@@ -94,10 +95,9 @@ export class AllApplicationsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort
 
   constructor(
+    private _dialogService: DialogService,
     private _apiService: ApiApplicationsService,
     private _applicationsService: ApplicationsService,
-    private _dialog: MatDialog,
-    private _globalService: GlobalService,
     private _authService: AuthService,
     private _snackBarService: GlobalSnackBarService,
   ) {
@@ -175,7 +175,7 @@ export class AllApplicationsComponent implements OnInit {
   }
 
   openCreateOrder(data: any){
-    const dialogRef = this._dialog.open(ApplicationsProductsSelectComponent, {
+    const dialogRef = this._dialogService.openDialog(ApplicationsProductsSelectComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({
@@ -190,7 +190,7 @@ export class AllApplicationsComponent implements OnInit {
   }
 
   openUpdateApplicationForm(data: any) {
-    const dialogRef = this._dialog.open(UpdateApplicationsComponent, {
+    const dialogRef = this._dialogService.openDialog(UpdateApplicationsComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({
@@ -206,7 +206,7 @@ export class AllApplicationsComponent implements OnInit {
 
   openAddEditEmpForm() {
     // this.viewFormatPhone.set('')
-    const dialogRef = this._dialog.open(AddApplicationsComponent);
+    const dialogRef = this._dialogService.openDialog(AddApplicationsComponent);
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {

@@ -105,6 +105,10 @@ export class AddProductsComponent implements OnInit {
       categories: ['', Validators.required],
       subCategories: ['', Validators.required],
       materialThickness:'',
+      dimensions: '',
+      material: ['', Validators.required],
+      color: ['', Validators.required],
+      weight: '',
     })
   }
 

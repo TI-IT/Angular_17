@@ -50,7 +50,7 @@ const productsSchema = new mongoose.Schema({
     color: {
         type: String,
     },
-    set: {
+    weight: {
         type: String,
     },
     createDate: {

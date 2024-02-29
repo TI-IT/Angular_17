@@ -136,6 +136,10 @@ export interface IProducts {
   categories: string;
   subCategories: string;
   materialThickness: string;
+  dimensions: string;
+  material: string;
+  color: string;
+  weight: string;
 }
 
 export interface ICategory {

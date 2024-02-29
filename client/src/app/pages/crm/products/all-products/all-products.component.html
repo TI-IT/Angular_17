@@ -81,6 +81,26 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Толщина материала</th>
         <td mat-cell *matCellDef="let row"> {{ row.materialThickness }}</td>
       </ng-container>
+      <!-- Enquiry Date Column -->
+      <ng-container matColumnDef="dimensions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Размеры</th>
+        <td mat-cell *matCellDef="let row"> {{ row.dimensions }}</td>
+      </ng-container>
+      <!-- Enquiry Date Column -->
+      <ng-container matColumnDef="material">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Материал</th>
+        <td mat-cell *matCellDef="let row"> {{ row.material }}</td>
+      </ng-container>
+      <!-- Enquiry Date Column -->
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Цвет</th>
+        <td mat-cell *matCellDef="let row"> {{ row.color }}</td>
+      </ng-container>
+      <!-- Enquiry Date Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Вес</th>
+        <td mat-cell *matCellDef="let row"> {{ row.weight }}</td>
+      </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="action">
